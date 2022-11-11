@@ -57,6 +57,10 @@ set number
 set relativenumber
 set ruler
 
+" Reduced case sensitivity in searches
+set ignorecase
+set smartcase 
+
 " Don't make noise
 set visualbell
 
