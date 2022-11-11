@@ -53,7 +53,8 @@ omap <c-c> <esc>
 syntax on
 
 " Position in code
-set number
+set number 
+set relativenumber
 set ruler
 
 " Don't make noise
