@@ -1,0 +1,21 @@
+""" Link to ~/.ideavimrc
+
+""" Plugins
+
+""" Plugin Settings
+
+""" Vanilla Settings
+set number
+set relativenumber
+set showmode
+set so=5
+set incsearch
+set hlsearch
+set nu
+set scrolloff=5
+map Q gq
+
+""" Idea Specific settings ---------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
