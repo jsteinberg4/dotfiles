@@ -56,6 +56,7 @@ syntax on
 set number 
 set relativenumber
 set ruler
+set scrolloff=3
 
 " Reduced case sensitivity in searches
 set ignorecase
