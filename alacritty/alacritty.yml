@@ -1,0 +1,62 @@
+# This is the config file for terminal emulator Alacritty.
+# This file should be linked to one of the following locations:
+# 1. $XDG_CONFIG_HOME/alacritty/alacritty.yml
+# 2. $XDG_CONFIG_HOME/alacritty.yml
+# 3. $HOME/.config/alacritty/alacritty.yml
+# 4. $HOME/.alacritty.yml
+
+# Any items in the `env` entry will be added as environment variables.
+# Some entries may override variables set by alacritty itself.
+env:
+  # TERM variable --
+  # Sets the $TERM environment var for each instance of Alacritty. By default,
+  # Alacritty will check the local terminfo DB and use `alacritty` if not available,
+  # otherwise `xterm-256color` is used.
+  TERM: alacritty
+
+# Config for the window shape/properties directly
+window:
+  # Default dimensions
+  # dimensions:
+  #  columns: 75 
+  #  lines: 30
+
+
+  # Background opacity
+  # -- Window opacity as float in range [0.0, 1.0].
+  # 0.0 = Total transparency; 1.0 = Opaque
+  opacity: 0.90
+
+
+  # Allow terminal apps to change window title
+  dynamic_title: true
+
+scrolling:
+  # Max # lines in the scrollback buffer; value=0 disables scrolling
+  history: 10000
+
+  # Number of lines the viewport will move for every line scrolled when scrollback is enabled
+  multiplier: 3
+
+# Font configs
+font:
+  size: 12.0
+
+# Uses the "bright" color pallette for bold text
+# Default: false
+draw_bold_text_with_bright_colors: true
+
+# Rules for text highlighting
+selection:
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true
+
+# Color schemes -- TODO
+# schemes:
+# color_scheme: &anchor_name
+#   color_options....
+# colors: *anchor_name
