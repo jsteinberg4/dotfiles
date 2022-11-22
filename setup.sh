@@ -26,6 +26,16 @@ num_box() {
 alias box="num_box ''"
 export -f div
 
+###########################
+# 	Unset script utilities
+##########################
+free() {
+	unset div
+	unset line
+	unset note
+	unset fixme
+	unset box
+}
 ############################
 # 			Prologue 					#
 ############################
@@ -42,32 +52,39 @@ note "If you would like to add any additional configuration/setup scripts, add t
 ############################
 echo ""
 line "Locating setup scripts..."
-SCRIPTS=($SCRIPT_DIR/*)
+
+# StackOverflow suggested using shopt -s/-u nullglob
+# https://stackoverflow.com/questions/18884992/how-do-i-assign-ls-to-an-array-in-linux-bash/18887210#18887210
+# Seems to work, not sure why
+shopt -s nullglob
 cd $SCRIPT_DIR
-SCRIPT_NAMES=(*.sh)
+SCRIPTS=(*.sh)
+NUM_SCRIPTS="${#SCRIPTS[@]}"
+shopt -u nullglob
 cd ..
 
-NUM_SCRIPTS="${#SCRIPTS[@]}"
-line "Found $NUM_SCRIPTS setup scripts."
-div
-
-############################
+###############################
 # Run scripts in alphabetical order
+################################
+if (( $NUM_SCRIPTS == 0 )); then
+	line "No scripts found"
+	line "Exiting..."
+	free
+	exit 1
+else
+	line "Executing setup scripts..."
+	for (( x=0; x < $NUM_SCRIPTS; x++ )); do
+		num_box "[$((x+1))/$NUM_SCRIPTS]" "${SCRIPTS[$x]}"
+		source "$SCRIPT_DIR/${SCRIPTS[$x]}"
+		echo ""
+	done
+fi
+
 ############################
-echo ""
-line "Executing setup scripts..."
-for (( x=0; x < $NUM_SCRIPTS; x++ )); do
-	num_box "[$((x+1))/$NUM_SCRIPTS]" "${SCRIPT_NAMES[$x]}"
-	source "${SCRIPTS[$x]}"
-	echo ""
-done
+# 		Exiting  		      	#
+############################
+line "All scripts completed!"
+line "Goodbye."
+free
 
 
-########################
-# 	Unset script utilities
-######################
-unset div
-unset line
-unset note
-unset fixme
-unset box
