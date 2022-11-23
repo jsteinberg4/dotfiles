@@ -1,22 +1,16 @@
 ###########################################
 # 			Homebrew Setup
 ###########################################
-_name="brew.sh"
-
-line "This script installs Homebrew at its default location."
-note "If you do not accept/deny within 10 seconds, it will install by default."
-
-yesexpr="y|Y"
-noexpr="n|N"
-loop=true
+NAME="Homebrew"
 
 abort() {
 	line $1
 	exit 1
 }
 
+# cURL the latest version of homebrew and install
 run_install () {
-	line "Installing Homebrew..."
+	line "Downloading and running the installer for $NAME."
 
 	# Download the Homebrew installer to a temp file
 	tmp_base='homebrew_installer_sh'
@@ -30,19 +24,8 @@ run_install () {
 	)
 }
 
-no_install() {
-	line "Homebrew will not be installed."
+clear_installers() {
+	line "homebrew.clear_installers"
+	unset run_install
+	unset abort
 }
-
-while $loop; do
-	read -t 10 -n 1 -p "[*]     Would you like to install homebrew? (Y/N):  " answer
-	[ -z "$answer" ] && answer="Y"  # If no reply, default to Yes
-	echo "" # Newline after input
-	case $answer in
-		[Yy]* ) loop=false; run_install ;;
-		[Nn]* ) loop=false; no_install ;;
-		* ) line "Please answer Yes/No." ;;
-	esac
-done
-
-line "End of $_name."

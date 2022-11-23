@@ -10,6 +10,7 @@ line_out() {
 alias line="line_out \"[*]\""
 alias note="line_out '[NOTE]'"
 alias fixme="line_out '[FIXME]'"
+alias warn="line_out '[WARN]'"
 
 _DIVIDER=""
 for _ in $(seq 1 50); do
@@ -26,15 +27,39 @@ num_box() {
 alias box="num_box ''"
 export -f div
 
+export TIMEOUT=30
 export SCRIPT_DIR="./setup_scripts"
+
+no_install() {
+	line "$1 will not be installed."
+}
+
+prompt_execute() {
+	program=$1
+	loop=true
+	warn "if you do not accept/deny within $TIMEOUT seconds, $program will be installed by default."
+	while $loop; do
+		read -t $TIMEOUT -n 1 -p "$(printf "%-7s\t%s: " "[*]" "Would you like to install $program? (Y/N)")" answer
+		[ -z "$answer" ] && answer='y'  # Default to 'Yes' on timeout
+		echo "" # Newline after input
+
+		case $answer in 
+			[yY]* ) loop=false; run_install;;
+			[nN]* ) loop=false; no_install $program;;
+			* ) line "Please answer Yes (y) or No (n).";;
+		esac
+	done
+}
 ###########################
 # 	Unset script utilities
 ##########################
 free() {
+	unset TIMEOUT
 	unset div
 	unset line
 	unset note
 	unset fixme
+	unset warn
 	unset box
 	unset SCRIPT_DIR
 }
@@ -47,6 +72,9 @@ line "Hello! This configuration script attempts to apply any configurations save
 line "It does this by executing all scripts matching the pattern \`$SCRIPT_DIR/*.sh\`. "
 fixme "Script execution order cannot be guaranteed."
 note "If you would like to add any additional configuration/setup scripts, add them to: \`$SCRIPT_DIR/\`"
+
+# Give user time to read
+read -n 1 -s -r -p $'\nPress any key to continue...\n' key
 
 ############################
 # 	 Locate scripts
@@ -77,6 +105,8 @@ else
 	for (( x=0; x < $NUM_SCRIPTS; x++ )); do
 		num_box "[$((x+1))/$NUM_SCRIPTS]" "${SCRIPTS[$x]}"
 		source "$SCRIPT_DIR/${SCRIPTS[$x]}"
+		prompt_execute $NAME
+		clear_installers
 		echo ""
 	done
 fi
@@ -84,8 +114,7 @@ fi
 ############################
 # 		Exiting  		      	#
 ############################
+div
 line "All scripts completed!"
 line "Goodbye."
 free
-
-
