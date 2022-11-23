@@ -26,6 +26,7 @@ num_box() {
 alias box="num_box ''"
 export -f div
 
+export SCRIPT_DIR="./setup_scripts"
 ###########################
 # 	Unset script utilities
 ##########################
@@ -35,11 +36,11 @@ free() {
 	unset note
 	unset fixme
 	unset box
+	unset SCRIPT_DIR
 }
 ############################
 # 			Prologue 					#
 ############################
-SCRIPT_DIR="./setup_scripts"
 
 box "jsteinberg4/dotfiles/setup.sh"
 line "Hello! This configuration script attempts to apply any configurations saved within this repository."
