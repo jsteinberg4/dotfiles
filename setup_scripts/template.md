@@ -24,6 +24,11 @@ run_install() {
 	... # Do more stuff
 }
 
+_install_helper() {
+	warn "We may have had some complications! I was the only helper :'("
+	... # Do some other stuff
+}
+
 clear_installers() {
 	unset run_install
 	unset _install_helper
