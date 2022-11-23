@@ -43,6 +43,7 @@ clear_installers() {
 * `note(string)` -- Prints a formatted line prefixed by `[NOTE]`
 * `warn(string)` -- Prints a formatted line prefixed by `[WARN]`
 * `fixme(string)` -- Prints a formatted line prefixed by `[FIXME]`
+* `debug(string)` -- Prints a formatted line prefixed by `[DEBUG]`
 * `box(string)` -- Prints `string` with divider lines above and below
 ### Variables
 * `NAME` -- Name of the program to be installed (defined in each script)

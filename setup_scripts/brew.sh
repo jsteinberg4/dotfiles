@@ -25,7 +25,7 @@ run_install () {
 }
 
 clear_installers() {
-	line "homebrew.clear_installers"
+	debug "homebrew.clear_installers"
 	unset run_install
 	unset abort
 }

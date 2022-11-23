@@ -11,6 +11,7 @@ alias line="line_out \"[*]\""
 alias note="line_out '[NOTE]'"
 alias fixme="line_out '[FIXME]'"
 alias warn="line_out '[WARN]'"
+alias debug="line_out '[DEBUG]'"
 
 _DIVIDER=""
 for _ in $(seq 1 50); do
@@ -60,6 +61,7 @@ free() {
 	unset note
 	unset fixme
 	unset warn
+	unset debug
 	unset box
 	unset SCRIPT_DIR
 }
