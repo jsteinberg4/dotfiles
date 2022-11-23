@@ -1,7 +1,7 @@
 Setup Script Template
 ----
 
-* `dotfiles/setup.sh` uses a (template method pattern)[https://refactoring.guru/design-patterns/template-method] to run the installer for each script.
+* `dotfiles/setup.sh` uses a [template method pattern](https://refactoring.guru/design-patterns/template-method) to run the installer for each script.
 * These template methods are:
 	- `run_install`:  Executes any steps necessary to install the given program
 	- `clear_installers`: Unsets run_install and any other functions. Probably unecessary, but prevents any scripts from unintentionally running a function defined by another script.
