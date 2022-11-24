@@ -29,7 +29,8 @@ alias box="num_box ''"
 export -f div
 
 export TIMEOUT=30
-export SCRIPT_DIR="./setup_scripts"
+export WORKING_DIR="$(pwd)"
+export SCRIPT_DIR="$WORKING_DIR/setup_scripts"
 
 no_install() {
 	line "$1 will not be installed."
@@ -64,6 +65,7 @@ free() {
 	unset debug
 	unset box
 	unset SCRIPT_DIR
+	unset WORKING_DIR
 }
 ############################
 # 			Prologue 					#

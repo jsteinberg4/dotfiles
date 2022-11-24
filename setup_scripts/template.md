@@ -46,6 +46,7 @@ clear_installers() {
 * `debug(string)` -- Prints a formatted line prefixed by `[DEBUG]`
 * `box(string)` -- Prints `string` with divider lines above and below
 ### Variables
+* `WORKING_DIR` -- The base repo directory (i.e. `pwd` run within `dotfiles/`)
 * `NAME` -- Name of the program to be installed (defined in each script)
 * `TIMEOUT` -- Total time before programs are installed by default
 * `SCRIPT_DIR` -- Directory containing the setup scripts
