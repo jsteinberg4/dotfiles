@@ -69,9 +69,10 @@ _link_config () {
 	mkdir -p "$CONFIG_DIR"
 	mkdir -p "$CONFIG_DIR/plugs"
 
-	# Link the init.vim
-	ln -s "$(pwd)/nvim/init.vim" "$CONFIG_DIR/init.vim"
-	nvim -es "PlugInstall" & # Install plugins ahead of time
+	# Link the nvim directory
+	ln -Fs "$(pwd)/nvim" "$CONFIG_DIR"
+
+	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 }
 
 clear_installers() {

@@ -37,7 +37,6 @@ filetype plugin on
 set runtimepath+=~/.config/nvim/plugs/vim-polyglot/syntax/
 
 " Set default theme
-" colorscheme palenight
 colorscheme gruvbox
 
 " Disable C-z from job-controlling neovim
