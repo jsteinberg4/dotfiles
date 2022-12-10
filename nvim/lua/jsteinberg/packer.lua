@@ -17,7 +17,7 @@ return require("packer").startup(function(use)
 	-- Do not remove this use msg
     use("wbthomason/packer.nvim")
 
-    -- Simple plugins can be specified as strings
+    -- Git integration
     use("tpope/vim-fugitive")
 
     -- TODO -- What are these for?
@@ -26,9 +26,10 @@ return require("packer").startup(function(use)
     use("nvim-telescope/telescope.nvim")
 
     -- Status line
-    use({
-        'nvim-lualine/lualine.nvim',
-    })
+    use({'nvim-lualine/lualine.nvim'})
+
+    -- Language server stuff
+    use({'neoclide/coc.nvim', branch = 'release' })
 
     -- Colorscheme section
     use("gruvbox-community/gruvbox")
