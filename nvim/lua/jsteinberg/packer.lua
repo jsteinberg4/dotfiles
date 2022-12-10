@@ -34,6 +34,7 @@ return require("packer").startup(function(use)
     -- Colorscheme section
     use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")
+    use("EdenEast/nightfox.nvim")
 
     -- Automatically set up fonf after cloning packer. Keep at the end.
     if packer_bootstrap then
