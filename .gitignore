@@ -1,2 +1,3 @@
 # Ignore compiled nvim/packer stuff
 nvim/plugin/
+.DS_Store

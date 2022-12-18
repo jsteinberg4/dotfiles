@@ -1,2 +1,2 @@
-require("jsteinberg.set")
 require("jsteinberg.packer")
+require("jsteinberg.set")
