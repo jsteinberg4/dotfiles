@@ -11,10 +11,10 @@ end
 -- Install plugins here
 -- Equivalent to the Plug#begin section for vim-plug
 require("packer").startup(function(use)
-	-- Do not remove this -- Installs/uses packer
+    -- Do not remove this -- Installs/uses packer
     use("wbthomason/packer.nvim")
 
-    -- Colors 
+    -- Colors
     use("gruvbox-community/gruvbox")
     use("navarasu/onedark.nvim")
 
@@ -53,7 +53,7 @@ require("packer").startup(function(use)
     }
 
     -- =============================
-    -- =    LSP Setup 
+    -- =    LSP Setup
     -- =============================
     use { -- Language server itself
         'neovim/nvim-lspconfig',
@@ -92,12 +92,12 @@ require("packer").startup(function(use)
 end)
 
 if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Packer completes,'
-  print '       then restart nvim'
-  print '=================================='
-  return
+    print '=================================='
+    print '    Plugins are being installed'
+    print '    Wait until Packer completes,'
+    print '       then restart nvim'
+    print '=================================='
+    return
 end
 
 

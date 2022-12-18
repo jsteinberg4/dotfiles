@@ -54,6 +54,7 @@ require('mason').setup({
 local lsp_servers = {
   'pyright',
   'sumneko_lua',
+  'marksman',
 }
 
 -- Install the sserver list
@@ -99,7 +100,8 @@ require('lspconfig').sumneko_lua.setup {
       diagnostics = {
         globals = { 'vim' },
       },
-      workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+      -- workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+      -- workspace = { library = vim.cmd('pwd') },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = { enable = false },
     },
@@ -148,6 +150,10 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+vim.diagnostic.config({
+  virtual_text = true,
+})
 
 -- Modeline (see: `help modeline`)
 -- vim: ts=2 sts=2 sw=2 et
