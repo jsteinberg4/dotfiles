@@ -1,4 +1,8 @@
+-- Set mapleader before ANYTHING else bc of weird bugs
+vim.g.mapleader = ' '
+
 require("jsteinberg.packer")
+require("jsteinberg.remap")
 require("jsteinberg.set")
 
 local yank_group = vim.api.nvim_create_augroup("HighlightYank", {})
