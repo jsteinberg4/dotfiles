@@ -80,9 +80,10 @@ require("packer").startup(function(use)
     }
 
     -- =============================
-    -- =    Debug Setup -- TODO
+    -- =    Debug Setup (DAP) -- TODO
     -- =============================
-
+    use("mfussenegger/nvim-dap")
+    use("mfussenegger/nvim-dap-python")
 
 
     if is_bootstrap then
