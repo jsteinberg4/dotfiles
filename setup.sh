@@ -39,9 +39,10 @@ no_install() {
 prompt_execute() {
 	program=$1
 	loop=true
-	warn "if you do not accept/deny within $TIMEOUT seconds, $program will be installed by default."
+	warn "if you do not accept/deny within $TIMEOUT seconds, program(s) will be installed by default."
 	while $loop; do
-		read -t $TIMEOUT -n 1 -p "$(printf "%-7s\t%s: " "[*]" "Would you like to install $program? (Y/N)")" answer
+		printf -v prompt_text "%-7s\t%s%s%s: " "[*]" "Would you like to install " $program "? (Y/N)"
+		read -t $TIMEOUT -n 1 -p "$prompt_text" answer
 		[ -z "$answer" ] && answer='y'  # Default to 'Yes' on timeout
 		echo "" # Newline after input
 
