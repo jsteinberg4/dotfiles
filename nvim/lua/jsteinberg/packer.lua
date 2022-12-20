@@ -55,6 +55,11 @@ require("packer").startup(function(use)
         }
     }
 
+    use { -- better window movement
+        's1n7ax/nvim-window-picker',
+        tag = 'v1.*',
+    }
+
     use({
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
