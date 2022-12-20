@@ -1,5 +1,5 @@
 --  project tree
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "[P]roject [V]iew" })
+-- vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "[P]roject [V]iew" })
 
 -- Make space do nothing in normal/vis modes
 vim.keymap.set({ 'n', 'v' }, '<Space>', "<Nop>", { silent = true })
