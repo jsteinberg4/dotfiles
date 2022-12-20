@@ -27,19 +27,19 @@ lsp.configure('sumneko_lua', {
 local cmp = require('cmp')
 local cmp_select = { cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ["<C-Space>"] = cmp.mapping.complete(),
 })
 
 lsp.setup_nvim_cmp({ -- See nvim-cmp docs for options
     mapping = cmp_mappings,
     sources = {
-        {name = 'path'},
-        {name = 'nvim_lsp', keyword_length = 3},
-        {name = 'buffer', keyword_length = 3},
-        {name = 'luasnip', keyword_length = 2},
+        { name = 'path' },
+        { name = 'vim_lsp', keyword_length = 3 },
+        { name = 'buffer', keyword_length = 3 },
+        { name = 'luasnip', keyword_length = 2 },
     }
 })
 
@@ -73,7 +73,7 @@ lsp.on_attach(function(_, bufnr)
     bind('n', "gI", vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     bind('n', "<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
     bind('i', "<C-h>", vim.lsp.buf.signature_help, "<Ctrl> + Signature [H]elp")
-    bind('n',"K", vim.lsp.buf.hover, 'Hover Documentation')
+    bind('n', "K", vim.lsp.buf.hover, 'Hover Documentation')
     bind('n', 'gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
     -- Telescope LSP bindings
@@ -94,8 +94,15 @@ lsp.on_attach(function(_, bufnr)
         elseif vim.lsp.buf.formatting then
             vim.lsp.buf.formatting()
         end
-    end)
-    bind('n', '<C-L>',  vim.cmd("Format %"), "(IntelliJ Binding) Format buffer")
+    end, { desc = "Format current buffer with LSP" })
+
+    -- Automatically format the file when saving/writing
+    vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = bufnr,
+        callback = function()
+            vim.cmd("Format")
+        end
+    })
 end)
 
 -- ==============================

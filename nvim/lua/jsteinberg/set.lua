@@ -6,7 +6,7 @@ vim.o.relativenumber = true
 vim.o.ruler = true -- Shows cursor position in status line
 
 -- Disable mouse
-vim.o.mouse = ''
+vim.o.mouse = 'n'
 
 vim.o.errorbells = false
 
