@@ -6,6 +6,7 @@ NAME="Alacritty"
 
 run_install() {
 	# TODO -- Clone & install
+	# install with brew cask?
 
 	# Post-build options -- terminfo, configuration files
 	# https://github.com/alacritty/alacritty/blob/master/INSTALL.md#post-build

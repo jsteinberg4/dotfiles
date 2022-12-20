@@ -4,8 +4,9 @@
 NAME="Prezto"
 
 run_install() {
-	debug "prezto.run_install"
-
+	debug "prezto installer broken"
+	debug "Cloning repo to default location. Link files manually."
+	debug "Instructions: https://github.com/jsteinberg4/prezto#readme" 
 	# Basic, totally unconfigured TODO -- Configuration
 	eval "git clone --recursive https://github.com/jsteinberg4/prezto.git $HOME/.zprezto"
 	#

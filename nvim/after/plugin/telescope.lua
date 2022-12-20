@@ -1,6 +1,6 @@
 require('telescope').setup({
    defaults = {
-      winblend = 25, -- Floating window transparency
+      winblend = 15, -- Floating window transparency
       path_display = "smart", -- Only show path differneces
    }
 })
