@@ -14,7 +14,7 @@ run_install () {
 
 	# Download the Homebrew installer to a temp file
 	tmp_base='homebrew_installer_sh'
-	brew_tmp=`mktemp -t ${tmp_base}` || abort "Homebrew installer script failed to obtain a safe temp file"
+	brew_tmp=`mktemp -t ${tmp_base}` || abort "Homebrew installer script failed to obtain a safe temp dir"
 
 	curl -fsSL "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh" > $brew_tmp
 	# Subshell to unset POSIXLY_CORRECT w/o modifying parent shell
