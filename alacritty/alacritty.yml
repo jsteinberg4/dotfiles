@@ -25,11 +25,22 @@ window:
   # Background opacity
   # -- Window opacity as float in range [0.0, 1.0].
   # 0.0 = Total transparency; 1.0 = Opaque
-  opacity: 0.90
+  opacity: 0.9
 
 
   # Allow terminal apps to change window title
   dynamic_title: true
+
+  # Startup Mode (changes require restart)
+  #
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  #
+  # Values for `startup_mode` (macOS only):
+  #   - SimpleFullscreen
+  startup_mode: Fullscreen
 
 scrolling:
   # Max # lines in the scrollback buffer; value=0 disables scrolling

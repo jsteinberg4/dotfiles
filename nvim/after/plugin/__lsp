@@ -1,0 +1,13 @@
+-- Function to run whenver an LSP connects to a buffer
+local on_attach = function(client, bufnr)
+  -- Create command `:Format` local to the LSP buffer
+  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+    if vim.lsp.buf.format then
+      vim.lsp.buf.format()
+    elseif vim.lsp.buf.formatting then
+      vim.lsp.buf.formatting()
+    end
+  end, { desc = "Format current buffer with LSP" })
+  nmap("<C-L>", vim.cmd("Format"), "Format current buffer with LSP (IntelliJ Binding)")
+end
+

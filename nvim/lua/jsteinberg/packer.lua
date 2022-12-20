@@ -40,9 +40,17 @@ require("packer").startup(function(use)
     use('numToStr/Comment.nvim') -- "gc" to comment regions
     use('tpope/vim-sleuth') -- autodetect tabstop + shift width
 
-    use("theprimeagen/harpoon") -- pin recent files
     use("mbbill/undotree") -- persistent & powerful undo abilities
 
+    use({
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    })
 
     -- Language server stuff
     use { -- Treesitter for highlighting + other goodies
@@ -55,29 +63,53 @@ require("packer").startup(function(use)
     -- =============================
     -- =    LSP Setup
     -- =============================
-    use { -- Language server itself
-        'neovim/nvim-lspconfig',
+    -- Status updates for LSP
+    use('j-hui/fidget.nvim')
+    use {
+        'VonHeikemen/lsp-zero.nvim',
         requires = {
-            -- Auto install LSPs to stdpath for neovim
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-            -- Useful status updates for LSP
-            'j-hui/fidget.nvim',
-        },
-    }
-    use { -- Autocompletion
-        'hrsh7th/nvim-cmp',
-        requires = {
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-nvim-lua',
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
 
-            'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip',
-            'rafamadriz/friendly-snippets',
-        },
+
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'saadparwaiz1/cmp_luasnip'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lua'},
+
+            -- Snippets
+            {'L3MON4D3/LuaSnip'},
+            {'rafamadriz/friendly-snippets'},
+        }
     }
+    -- use { -- Language server itself
+    --     'neovim/nvim-lspconfig',
+    --     requires = {
+    --         -- Auto install LSPs to stdpath for neovim
+    --         'williamboman/mason.nvim',
+    --         'williamboman/mason-lspconfig.nvim',
+    --         -- Useful status updates for LSP
+    --         'j-hui/fidget.nvim',
+    --     },
+    -- }
+    -- use { -- Autocompletion
+    --     'hrsh7th/nvim-cmp',
+    --     requires = {
+    --         'hrsh7th/cmp-buffer',
+    --         'hrsh7th/cmp-path',
+    --         'hrsh7th/cmp-nvim-lsp',
+    --         'hrsh7th/cmp-nvim-lua',
+    --
+    --         'L3MON4D3/LuaSnip',
+    --         'saadparwaiz1/cmp_luasnip',
+    --         'rafamadriz/friendly-snippets',
+    --     },
+    -- }
 
     -- =============================
     -- =    Debug Setup (DAP) -- TODO
