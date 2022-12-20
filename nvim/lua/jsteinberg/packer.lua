@@ -17,6 +17,7 @@ require("packer").startup(function(use)
     -- Colors
     use("gruvbox-community/gruvbox")
     use("navarasu/onedark.nvim")
+    use('NLKNguyen/papercolor-theme') -- high contrast
 
     -- Telescope fuzzy finding files, keymaps, etc.
     use {
@@ -89,36 +90,26 @@ require("packer").startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
-    -- use { -- Language server itself
-    --     'neovim/nvim-lspconfig',
-    --     requires = {
-    --         -- Auto install LSPs to stdpath for neovim
-    --         'williamboman/mason.nvim',
-    --         'williamboman/mason-lspconfig.nvim',
-    --         -- Useful status updates for LSP
-    --         'j-hui/fidget.nvim',
-    --     },
-    -- }
-    -- use { -- Autocompletion
-    --     'hrsh7th/nvim-cmp',
-    --     requires = {
-    --         'hrsh7th/cmp-buffer',
-    --         'hrsh7th/cmp-path',
-    --         'hrsh7th/cmp-nvim-lsp',
-    --         'hrsh7th/cmp-nvim-lua',
-    --
-    --         'L3MON4D3/LuaSnip',
-    --         'saadparwaiz1/cmp_luasnip',
-    --         'rafamadriz/friendly-snippets',
-    --     },
-    -- }
-
     -- =============================
-    -- =    Debug Setup (DAP) -- TODO
+    -- =    Debug Setup (DAP)
     -- =============================
-    use("mfussenegger/nvim-dap")
-    use("mfussenegger/nvim-dap-python")
-
+    use { -- VSCode like debug UI
+        "rcarriga/nvim-dap-ui",
+        requires = {
+            { "mfussenegger/nvim-dap" },
+            { "mfussenegger/nvim-dap-python" },
+        }
+    }
+    use {
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
+            -- Debug adapters
+            { "nvim-neotest/neotest-python" },
+        }
+    }
 
     if is_bootstrap then
         require('packer').sync()

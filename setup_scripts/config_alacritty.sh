@@ -2,12 +2,11 @@
 # Alacritty Terminal Setup
 ##########################
 
-NAME="Alacritty"
+NAME="AlacrittyConfig"
 
 run_install() {
-	# TODO -- Clone & install
-	# install with brew cask?
-
+	# Note -- Installed by Homebrew-Casks
+	#
 	# Post-build options -- terminfo, configuration files
 	# https://github.com/alacritty/alacritty/blob/master/INSTALL.md#post-build
 	_terminfo
