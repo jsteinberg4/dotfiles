@@ -1,12 +1,24 @@
 -- Packer bootstrapping
 -- > Copied from nvim-lua/kickstart.nvim
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-local is_bootstrap = false
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    is_bootstrap = true
-    vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim' .. install_path)
+-- local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+-- local is_bootstrap = false
+-- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+--     is_bootstrap = true
+--     vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim' .. install_path)
+--     vim.cmd [[packadd packer.nvim]]
+-- end
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
+
+local packer_bootstrap = ensure_packer()
 
 -- Install plugins here
 -- Equivalent to the Plug#begin section for vim-plug
@@ -126,7 +138,7 @@ require("packer").startup(function(use)
         }
     }
 
-    if is_bootstrap then
+    if packer_bootstrap then
         require('packer').sync()
     end
 

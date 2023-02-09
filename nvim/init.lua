@@ -1,1 +1,1 @@
-require("jsteinberg")
+require('jsteinberg')
