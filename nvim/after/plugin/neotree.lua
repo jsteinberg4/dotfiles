@@ -52,6 +52,15 @@ require('neo-tree').setup({
             hide_hidden = true,
         },
     },
+    event_handlers = {
+        {
+            event = "file_opened",
+            handler = function(file_path)
+                -- Auto close
+                require("neo-tree").close_all()
+            end
+        },
+    },
 })
 
 -- Keybindings
