@@ -9,6 +9,7 @@ vim.keymap.set({ 'n', 'v', 'i' }, '<C-s>', vim.cmd.write, { desc = "Save documen
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "q", "<Esc>", { desc = "q to exit visual mode" })
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down, center cursor" })

@@ -46,6 +46,12 @@ require('neo-tree').setup({
         },
     },
     window = {},
+    filesystem = {
+        filtered_items = {
+            hide_gitignored = true,
+            hide_hidden = true,
+        },
+    },
 })
 
 -- Keybindings
