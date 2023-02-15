@@ -60,6 +60,24 @@ require('neo-tree').setup({
                 require("neo-tree").close_all()
             end
         },
+        {
+            -- Equalize window sizes after opening neo-tree
+            event = "neo_tree_window_after_open",
+            handler = function(args)
+                if args.position == "left" or args.position == "right" then
+                    vim.cmd("wincmd =")
+                end
+            end
+        },
+        {
+            -- Equalize window sizes after closing neo-tree
+            event = "neo_tree_window_after_close",
+            handler = function(args)
+                if args.position == "left" or args.position == "right" then
+                    vim.cmd("wincmd =")
+                end
+            end
+        },
     },
 })
 
