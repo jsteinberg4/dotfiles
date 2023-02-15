@@ -11,13 +11,16 @@ vim.fn.sign_define("DiagnosticSignHint",
     { text = "", texthl = "DiagnosticSignHint" })
 
 
+-- Note: Run `:lua require('neo-tree').paste_default_config()` in an emtpy
+--       buffer to see the full default configuration
 require('neo-tree').setup({
     -- Close neo-tree if it's the only open window
-    close_if_last_window = true,
+    close_if_last_window = false,
     sort_case_insensitive = true,
+    hijack_netrw_behavior = "open_default",
     source_selector = {
-        winbar = true,
-        statusline = false,
+        winbar = false,
+        statusline = true,
     },
     buffers = {
         follow_current_files = true,
@@ -47,9 +50,18 @@ require('neo-tree').setup({
     },
     window = {},
     filesystem = {
+        -- "auto"   means refreshes are async, but it's synchronous when called from the Neotree commands.
+        -- "always" means directory scans are always async.
+        -- "never"  means directory scans are never async.
+        async_directory_scan = "always",
         filtered_items = {
+            visible = false,
             hide_gitignored = true,
             hide_hidden = true,
+            hide_by_name = {
+                ".DS_Store",
+                "__pycache__",
+            },
         },
     },
     event_handlers = {
@@ -78,6 +90,14 @@ require('neo-tree').setup({
                 end
             end
         },
+    },
+    -- These options are for people with VERY large git repos
+    git_status_async_options = {
+        batch_size = 1000, -- how many lines of git status results to process at a time
+        batch_delay = 10, -- delay in ms between batches. Spreads out the workload to let other processes run.
+        -- How many lines of git status results to process. Anything after this will be dropped.
+        -- Anything before this will be used. The last items to be processed are the untracked files.
+        max_lines = 10000,
     },
 })
 
