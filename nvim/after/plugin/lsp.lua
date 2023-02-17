@@ -4,7 +4,7 @@ lsp.preset("recommended")
 -- Langauge servers to always install
 lsp.ensure_installed({
     'pyright',
-    'sumneko_lua',
+    'lua_ls',
     'bashls',
     'jsonls',
     'marksman',
@@ -33,12 +33,13 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ["<C-Space>"] = cmp.mapping.complete(), -- <C-Space> triggers complete
 })
 
-lsp.setup_nvim_cmp({ -- See nvim-cmp docs for options
+lsp.setup_nvim_cmp({
+    -- See nvim-cmp docs for options
     mapping = cmp_mappings,
     sources = {
         { name = 'path' },
         { name = 'vim_lsp', keyword_length = 3 },
-        { name = 'buffer', keyword_length = 3 },
+        { name = 'buffer',  keyword_length = 3 },
         { name = 'luasnip', keyword_length = 2 },
     }
 })

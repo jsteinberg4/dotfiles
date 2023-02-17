@@ -1,7 +1,7 @@
 require('telescope').setup({
    defaults = {
       winblend = 15, -- Floating window transparency
-      path_display = "smart", -- Only show path differneces
+      --[[ path_display = "smart", -- Only show path differneces ]]
    }
 })
 pcall(require('telescope').load_extension, 'fzf')

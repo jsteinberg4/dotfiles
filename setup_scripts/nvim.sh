@@ -72,7 +72,7 @@ _link_config () {
 	# Link the nvim directory
 	ln -Fs "$(pwd)/nvim" "$CONFIG_DIR"
 
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 }
 
 clear_installers() {

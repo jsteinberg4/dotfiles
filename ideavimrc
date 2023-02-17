@@ -1,20 +1,49 @@
+"""" NOTE -- could source a regular vimrc
 """ Link to ~/.ideavimrc
+let mapleader=" "
 
-""" Plugins
+""" ------ Plugins
 
-""" Plugin Settings
+""" ------ Plugin options
+" Disables timeout option for which-key
+set notimeout
 
-""" Vanilla Settings
+
+""" ----- Vim Settings
 set relativenumber
 set nu
 set showmode
-set so=5
+set scrolloff 8
+
+
+
+" Incremental search
 set incsearch
-set hlsearch
-set scrolloff=3
+set ignorecase
+set smartcase
+
+" Set for better completion experience
+
+
+" Don't use Ex mode, use Q for formatting
 map Q gq
 
 """ Idea Specific settings ---------------
 set ideajoin
 set ideastatusicon=gray
 set idearefactormode=keep
+
+""" Plugins
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+
+" Find more examples here: https://jb.gg/share-ideavimrc
+
