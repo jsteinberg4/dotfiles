@@ -6,15 +6,15 @@ vim.o.relativenumber = true
 vim.o.ruler = true -- Shows cursor position in status line
 
 -- Disable mouse
-vim.o.mouse = 'n'
+vim.o.mouse = 'nv'
 
 vim.o.errorbells = false
 
 -- Text formatting
 vim.o.tabstop = 4
--- vim.o.softtabstop = 4
--- vim.o.shiftwidth = 4
--- vim.o.expandtab = true
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
 vim.o.breakindent = true
 
 vim.o.smartindent = true

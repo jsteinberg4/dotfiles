@@ -2,7 +2,7 @@
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'lua', 'python', 'help', 'markdown' },
+  ensure_installed = { 'c', 'lua', 'python', 'help', 'markdown', 'vim' },
 
   -- Install the ensured parsers asynchronously
   sync_install = false,
@@ -11,7 +11,13 @@ require('nvim-treesitter.configs').setup {
   -- Automatically install missing parsers on opening a new file type
   auto_install = false,
 
-  --highlight = { enable = true },
+  highlight = { enable = true },
+  rainbow = { -- Rainbow brackets config
+    enable = true,
+    -- disable = {} -- List[str] of languages to disable this for
+    extended_mode = true, -- also highlight non-braket delimiters
+    max_file_lines = 1000, -- Disable for files over N lines
+  },
   indent = { enable = true },
   incremental_selection = {
     enable = true,

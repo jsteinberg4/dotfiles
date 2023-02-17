@@ -1,7 +1,7 @@
 ############################
 # Install Command Line Utils with Homebrew
 ############################
-utils=("ripgrep" "fd")
+utils=("ripgrep" "fd" )
 utils_str=""
 for u in "${utils[@]}"; do
 	utils_str+="$u,"
