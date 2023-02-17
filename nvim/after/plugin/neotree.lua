@@ -102,7 +102,4 @@ require('neo-tree').setup({
 })
 
 -- Keybindings
-vim.keymap.set("n", "<leader>pv", ":NeoTreeFloatToggle<CR>", { desc = "[P]roject [V]iew" })
--- vim.keymap.set("n", "<leader>pv",
---     ":NeoTreeRevealToggle<CR>",
---     { desc = "[P]roject [V]iew" })
+vim.keymap.set("n", "<leader>pv", ":NeoTreeRevealToggle<CR>", { desc = "[P]roject [V]iew" })

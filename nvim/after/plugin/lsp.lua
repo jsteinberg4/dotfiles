@@ -13,13 +13,16 @@ lsp.ensure_installed({
     'cssls',
 })
 
--- Disable the global 'vim' error in lua conf files
-lsp.configure('sumneko_lua', {
+-- Disable the global 'vim' error in ltua conf files
+lsp.configure('lua_ls', {
     settings = {
         Lua = {
             diagnostics = {
                 globals = { 'vim' }
-            }
+            },
+            workspace = {
+                checkThirdParty = false,
+            },
         }
     }
 })
@@ -39,7 +42,7 @@ lsp.setup_nvim_cmp({
     sources = {
         { name = 'path' },
         { name = 'vim_lsp', keyword_length = 3 },
-        { name = 'buffer',  keyword_length = 3 },
+        { name = 'buffer', keyword_length = 3 },
         { name = 'luasnip', keyword_length = 2 },
     }
 })

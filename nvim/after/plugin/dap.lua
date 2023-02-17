@@ -20,8 +20,6 @@ require('dap-python').setup(
 )
 
 
-
-
 -- require("neotest").setup({
 --     adapters = {
 --         -- neotest-python does not have a setup function
