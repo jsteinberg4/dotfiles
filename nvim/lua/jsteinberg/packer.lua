@@ -28,8 +28,6 @@ require("packer").startup(function(use)
 
     -- Colors
     use("sainnhe/gruvbox-material")
-    use("navarasu/onedark.nvim")
-    use('NLKNguyen/papercolor-theme') -- high contrast
 
     -- Telescope fuzzy finding files, keymaps, etc.
     use {
@@ -141,7 +139,6 @@ require("packer").startup(function(use)
     if packer_bootstrap then
         require('packer').sync()
     end
-
 end)
 
 if is_bootstrap then
