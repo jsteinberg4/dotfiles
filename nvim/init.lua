@@ -1,1 +1,2 @@
-require('jsteinberg')
+require("impatient")
+require("jsteinberg")

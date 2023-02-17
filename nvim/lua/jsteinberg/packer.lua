@@ -25,9 +25,12 @@ local packer_bootstrap = ensure_packer()
 require("packer").startup(function(use)
     -- Do not remove this -- Installs/uses packer
     use("wbthomason/packer.nvim")
+    -- Optimizations to improve startup time
+    use("lewis6991/impatient.nvim")
 
     -- Colors
     use("sainnhe/gruvbox-material")
+    use("p00f/nvim-ts-rainbow")
 
     -- Telescope fuzzy finding files, keymaps, etc.
     use {
@@ -43,17 +46,18 @@ require("packer").startup(function(use)
             { 'nvim-tree/nvim-web-devicons' },
         },
     }
+
     -- Git integration
     use("tpope/vim-fugitive")
-    use("tpope/vim-rhubarb")
     use("lewis6991/gitsigns.nvim")
 
     use('nvim-lualine/lualine.nvim') -- Fancier statusline
     use('lukas-reineke/indent-blankline.nvim') -- add indent guides on bank lines
     use('numToStr/Comment.nvim') -- "gc" to comment regions
-    use('tpope/vim-sleuth') -- autodetect tabstop + shift width
 
-    use("mbbill/undotree") -- persistent & powerful undo abilities
+    use("mbbill/undotree", { -- persistent & powerful undo abilities
+        opt = true,
+    })
 
     use {
         "nvim-neo-tree/neo-tree.nvim",
@@ -70,16 +74,6 @@ require("packer").startup(function(use)
         tag = 'v1.*',
     }
 
-    use({
-        "kylechui/nvim-surround",
-        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
-    })
-
     -- Language server stuff
     use { -- Treesitter for highlighting + other goodies
         'nvim-treesitter/nvim-treesitter',
@@ -91,8 +85,13 @@ require("packer").startup(function(use)
     -- =============================
     -- =    LSP Setup
     -- =============================
-    -- Status updates for LSP
-    use('j-hui/fidget.nvim')
+    use('j-hui/fidget.nvim') -- Status updates for LSP
+    -- use('jose-elias-alvarez/null-ls.nvim', {
+    --     requires = { 'nvim-lua/plenary.nvim' }
+    -- })
+    -- use { -- function signature help while typing
+    --     'ray-x/lsp_signature.nvim'
+    -- }
     use {
         'VonHeikemen/lsp-zero.nvim',
         requires = {

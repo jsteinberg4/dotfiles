@@ -18,3 +18,6 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "Keep cursor centered while searching
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Center cursor while searching" })
 
 vim.keymap.set("n", "Q", "<nop>")
+
+-- Use 'q' to cancel visual mode, instead of just Escape
+vim.keymap.set("v", "q", "<Esc>")
