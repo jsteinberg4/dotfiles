@@ -6,7 +6,8 @@
 # 4. $HOME/.alacritty.yml
 
 import:
-  - ~/.config/alacritty/themes/gruvbox-material-alacritty.yml
+  # Import the theme you want from here.
+  - ./custom-themes/gruvbox-material-medium-dark.yml
 
 # Any items in the `env` entry will be added as environment variables.
 # Some entries may override variables set by alacritty itself.
@@ -78,6 +79,3 @@ selection:
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: true
-
-# Apply the color scheme.
-colors: *gruvbox_material_medium_dark
