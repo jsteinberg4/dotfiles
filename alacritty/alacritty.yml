@@ -7,7 +7,7 @@
 
 import:
   # Import the theme you want from here.
-  - ./custom-themes/gruvbox-material-medium-dark.yml
+  - ~/.config/alacritty/custom-themes/gruvbox-material-medium-dark.yml
 
 # Any items in the `env` entry will be added as environment variables.
 # Some entries may override variables set by alacritty itself.
