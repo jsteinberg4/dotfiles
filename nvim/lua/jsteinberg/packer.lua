@@ -30,6 +30,7 @@ require("packer").startup(function(use)
 
     -- Colors
     use("sainnhe/gruvbox-material")
+    use("overcache/NeoSolarized")
     use("p00f/nvim-ts-rainbow")
 
     -- Telescope fuzzy finding files, keymaps, etc.
