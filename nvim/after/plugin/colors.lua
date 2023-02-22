@@ -34,7 +34,7 @@ function Solarized()
     -- Special characters such as trailing whitespace, tabs, newlines, when displayed
     -- using ":set list" can be set to one of three levels depending on your needs.
     -- Default value is "normal". Provide "high" and "low" options.
-    vim.g.neosolarized_visibility = "high"
+    vim.g.neosolarized_visibility = "normal"
 
     -- I make vertSplitBar a transparent background color. If you like the origin
     -- solarized vertSplitBar style more, set this value to 0.
