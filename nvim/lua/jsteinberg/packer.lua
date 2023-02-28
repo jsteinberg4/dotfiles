@@ -25,13 +25,25 @@ local packer_bootstrap = ensure_packer()
 require("packer").startup(function(use)
     -- Do not remove this -- Installs/uses packer
     use("wbthomason/packer.nvim")
+
     -- Optimizations to improve startup time
     use("lewis6991/impatient.nvim")
+
+    -- Centers window & Dims inactive regions
+    use('folke/twilight.nvim')
+    use('folke/zen-mode.nvim')
 
     -- Colors
     use("sainnhe/gruvbox-material")
     use("overcache/NeoSolarized")
     use("p00f/nvim-ts-rainbow")
+    -- use { -- Doesn't work for some reason?
+    --     "folke/todo-comments.nvim",
+    --     requires = "nvim-lua/plenary.nvim",
+    --     config = function()
+    --         require 'todo-comments'.setup()
+    --     end,
+    -- }
 
     -- Telescope fuzzy finding files, keymaps, etc.
     use {
