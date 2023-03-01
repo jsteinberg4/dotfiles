@@ -1,6 +1,7 @@
 vim.o.termguicolors = true
 
-vim.g.default_colors = "NeoSolarized"
+-- vim.g.default_colors = "NeoSolarized"
+vim.g.default_colors = "gruvbox-material"
 
 function Gruvbox(contrast)
     -- Should come before setting colorscheme.
