@@ -1,0 +1,9 @@
+# Copied from: https://github.com/LazyVim/starter/blob/main/.gitignore
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data

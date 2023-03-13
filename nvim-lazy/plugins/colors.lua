@@ -1,0 +1,11 @@
+-- return {
+--     -- gruvbox-material
+--     {
+--         "sainnhe/gruvbox-material",
+--     },
+--
+--     -- Solarized colors
+--     {
+--         "Tsuzat/NeoSolarized.nvim",
+--     },
+-- }
