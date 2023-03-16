@@ -7,11 +7,18 @@
 -- ----------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  -- bootstrap lazy.nvim
-  -- stylua: ignore
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+    -- bootstrap lazy.nvim
+    -- stylua: ignore
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath
+    })
 end
-vim.opt.rtp:prepend(vim.env.LAZY or lazypath) -- Adds lazy.nvim to NeoVim's path 
+vim.opt.rtp:prepend(vim.env.LAZY or lazypath) -- Adds lazy.nvim to NeoVim's path
 -- ----------------
 -- END: Plugin Manager Bootstrapping
 -- ----------------
@@ -20,20 +27,21 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath) -- Adds lazy.nvim to NeoVim's path
 vim.g.mapleader = ' '
 
 require("lazy").setup({
-	spec = {
-		-- Import any modules, plugins, etc. here. eg: 
-		-- { import = "lazyvim.plugins.extras.lang.typescript" },
-		-- { import = "lazyvim.plugins.extras.lang.json" },
-		-- { import = "lazyvim.plugins.extras.ui.mini-animate" },
-		-- import/override with your plugins
-		{ import = "plugins" },
-	},
+    spec = {
+        -- Import any modules, plugins, etc. here. eg:
+        -- { import = "lazyvim.plugins.extras.lang.typescript" },
+        -- { import = "lazyvim.plugins.extras.lang.json" },
+        -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+        -- import/override with your plugins
+        { import = "plugins" },
+    },
 
-	-- Configuration options for lazy.nvim itself
-	defaults = {
-		-- Lazily load plugins by default
-		lazy = true,
-		-- Automatically check for plugin updates
-		checker = true,
-	},
+    -- Configuration options for lazy.nvim itself
+    defaults = {
+        -- Lazily load plugins by default
+        lazy = false,
+    },
+    checker = {
+        true, -- Automatically check for plugin updates
+    },
 })
