@@ -1,0 +1,36 @@
+set guicursor=""
+
+" Line Numbering
+set nu
+set relativenumber
+set ruler
+
+" Mouse controls
+set mouse='nv'
+
+" Searching
+set ignorecase
+set smartcase
+set incsearch
+set nohlsearch
+
+" Text formatting
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set breakindent
+set smartindent
+set nowrap
+
+set scrolloff=8
+set signcolumn
+set colorcolumn=80
+
+" Terminal colors
+set termguicolors
+
+" Netrw configs
+let g:netrw_browse_split=0
+let g:netrw_banner=0
+let g:netrw_winsize=25
