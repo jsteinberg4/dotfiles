@@ -34,6 +34,9 @@ require("lazy").setup({
         -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
         -- import/override with your plugins
         { import = "plugins" },
+        { import = "config.keymaps" }, -- Note: unsure if these will work
+        { import = "config.options" }, -- TODO -- lazy?
+        { import = "config.autocmds" },
     },
     -- Configuration options for lazy.nvim itself
     defaults = {

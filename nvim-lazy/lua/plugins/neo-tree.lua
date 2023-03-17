@@ -4,7 +4,7 @@
 
 return {
     "nvim-neo-tree/neo-tree.nvim",
-    cmd = "NeoTree",
+    cmd = "NeoTree", -- Load when the NeoTree coimmand is called
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-tree/nvim-web-devicons',
@@ -22,7 +22,6 @@ return {
     deactivate = function()
         vim.cmd([[NeoTree close]])
     end,
-    lazy = false,
     keys = {
         {
             "<leader>fe",
