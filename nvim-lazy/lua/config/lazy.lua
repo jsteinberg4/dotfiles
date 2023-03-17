@@ -35,7 +35,6 @@ require("lazy").setup({
         -- import/override with your plugins
         { import = "plugins" },
     },
-
     -- Configuration options for lazy.nvim itself
     defaults = {
         -- Lazily load plugins by default
@@ -43,5 +42,9 @@ require("lazy").setup({
     },
     checker = {
         true, -- Automatically check for plugin updates
+    },
+
+    install = {
+        colorscheme = { "tokyonight" },
     },
 })

@@ -35,42 +35,31 @@ return {
         { "<leader>E", "<leader>fE", desc = "[E]xplorer (cwd)", remap = true },
     },
     opts = {
-        -- Close neo-tree if it's the only open window
-        close_if_last_window = false,
         sort_case_insensitive = true,
         hijack_netrw_behavior = "open_default",
-        source_selector = {
-            winbar = false,
-            statusline = true,
-        },
-        buffers = {
-            follow_current_files = true,
-        },
+        source_selector = { winbar = false, statusline = true },
+        buffers = { follow_current_files = true },
         default_component_configs = {
-            container = {
-                enable_character_fade = true
-            },
+            container = { enable_character_fade = true },
             indent = {
+                with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
                 indent_size = 4,
                 padding = 2, -- Padding on LHS
                 expander_collapsed = "",
                 expander_expanded = "",
                 expander_highlight = "NeoTreeExpander",
             },
-            icon = {
-                folder_closed = "",
-                folder_open = "",
-                folder_empty = "ﰊ",
-            },
-            name = {
-                trailing_slash = true,
-            },
-            git_status = {
-                symbols = {}
+            name = { trailing_slash = true },
+        },
+        window = {
+            mappings = {
+                ["<space>"] = "none",
             },
         },
-        window = {},
         filesystem = {
+            bind_to_cwd = false,
+            follow_current_file = true,
+            -- For async_directory_scan:
             -- "auto"   means refreshes are async, but it's synchronous when called from the Neotree commands.
             -- "always" means directory scans are always async.
             -- "never"  means directory scans are never async.
@@ -113,6 +102,7 @@ return {
             },
         },
         -- These options are for people with VERY large git repos
+        -- I need these for work.
         git_status_async_options = {
             batch_size = 1000, -- how many lines of git status results to process at a time
             batch_delay = 10, -- delay in ms between batches. Spreads out the workload to let other processes run.
