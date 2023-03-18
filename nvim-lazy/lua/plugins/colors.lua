@@ -46,6 +46,5 @@ return {
     -------------------
     -- Centers window & Dims inactive regions
     { 'folke/twilight.nvim', cmd = "Twilight" },
-    { 'folke/zen-mode.nvim', cmd = "ZenMode"},
-    { "p00f/nvim-ts-rainbow" },
+    { 'folke/zen-mode.nvim', cmd = "ZenMode" },
 }

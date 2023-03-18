@@ -12,7 +12,8 @@ return {
     end,
     dependencies = {
         { 'nvim-lua/plenary.nvim' },
-        { -- Faster(?) fuzzy find algorithm
+        {
+            -- Faster(?) fuzzy find algorithm
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make',
             cond = vim.fn.executable 'make' == 1,
@@ -20,11 +21,11 @@ return {
         },
         { 'nvim-tree/nvim-web-devicons' },
     },
-    opts = { -- Config options
+    opts = {
+        -- Config options
         defaults = {
-            winblend = 15, -- Floating window transparency
+            winblend = 15,          -- Floating window transparency
             path_display = "smart", -- Only show path differneces
-
             -- From LazyVim:
             prompt_prefix = " ",
             selection_caret = " ",
@@ -66,11 +67,16 @@ return {
         },
     },
     keys = { -- Keymaps
+        -- Holdover from prev config. iffy difference on grep cmds
+        -- -- Note :: ripgrep must be installed for this
+        -- vim.keymap.set("n", "<leader>sw", function()
+        --    builtin.grep_string({ search = vim.fn.input("Grep >") });
+        -- end, { desc = "[S]earch [W]ord" })
         {
             "<leader>/",
             function()
                 require("telescope.builtin").current_buffer_fuzzy_find(
-                require("telescope.themes").get_dropdown({ previewer = false })
+                    require("telescope.themes").get_dropdown({ previewer = false })
                 )
             end,
             desc = "[/] Fuzzily search in current buffer]",
