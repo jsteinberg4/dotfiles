@@ -5,6 +5,7 @@ return {
     { 'j-hui/fidget.nvim' }, -- Status updates for LSP
     {
         'VonHeikemen/lsp-zero.nvim',
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' },
@@ -24,5 +25,7 @@ return {
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
         }
-    }
+    },
+
+
 }

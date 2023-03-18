@@ -26,8 +26,10 @@ return {
             },
         },
     },
-    { -- "gc" to comment regions
-        'numToStr/Comment.nvim'
+    {
+      -- "gc" to comment regions
+        'numToStr/Comment.nvim',
+        event = { "BufReadPre", "BufNewFile" },
     },
 
     {

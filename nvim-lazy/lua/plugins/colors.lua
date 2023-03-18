@@ -45,6 +45,32 @@ return {
     -- Other coloring
     -------------------
     -- Centers window & Dims inactive regions
-    { 'folke/twilight.nvim', cmd = "Twilight" },
-    { 'folke/zen-mode.nvim', cmd = "ZenMode" },
+    {
+        "folke/zen-mode.nvim",
+        keys = {
+            { "<leader>tz", "<CMD>ZenMode<CR>", desc = "[T]oggle [Z]en-mode" },
+        },
+        opts = {
+            -- Available callbacks... if I want them
+            -- -- Callback for when Zen Mode opens
+            -- on_open = function(win)
+            -- end,
+            -- -- Callback when zenmode closes
+            -- on_close = function()
+            -- end,
+        },
+        depencencies = {
+            {
+                "folke/twilight.nvim",
+                cmd = "Twilight",
+                opts = {
+                    inactive = true,
+                    exclude = { -- Filetypes to exclude (file extension)
+                        'txt',
+                        'md',
+                    }
+                },
+            },
+        },
+    },
 }

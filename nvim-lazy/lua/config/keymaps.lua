@@ -22,12 +22,8 @@ vim.keymap.set("v", "q", "<Esc>")
 -- #####################
 -- Always keep cursor centered!
 -- #####################
--- Basic motions w/ centering
-vim.keymap.set("n", "j", "jzz", { desc = "Line down, center cursor" })
-vim.keymap.set("n", "k", "kzz", { desc = "Line up, center cursor" })
 vim.keymap.set("n", "gg", "ggzz", { desc = "GOTO top, center cursor" })
 vim.keymap.set("n", "G", "Gzz", { desc = "GOTO bottom, center cursor" })
--- More advanced motions + search
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down, center cursor" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up, center cursor" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Keep cursor centered while searching" })
