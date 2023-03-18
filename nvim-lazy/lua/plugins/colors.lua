@@ -45,7 +45,7 @@ return {
     -- Other coloring
     -------------------
     -- Centers window & Dims inactive regions
-    { 'folke/twilight.nvim' },
-    { 'folke/zen-mode.nvim' },
+    { 'folke/twilight.nvim', cmd = "Twilight" },
+    { 'folke/zen-mode.nvim', cmd = "ZenMode"},
     { "p00f/nvim-ts-rainbow" },
 }

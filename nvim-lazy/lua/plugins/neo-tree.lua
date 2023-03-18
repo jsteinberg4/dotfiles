@@ -13,6 +13,17 @@ return {
     },
     init = function()
         vim.g.neo_tree_remove_legacy_commands = 1
+
+        -- Icons for diagnostic errors
+        vim.fn.sign_define("DiagnosticSignError",
+            { text = " ", texthl = "DiagnosticSignError" })
+        vim.fn.sign_define("DiagnosticSignWarn",
+            { text = " ", texthl = "DiagnosticSignWarn" })
+        vim.fn.sign_define("DiagnosticSignInfo",
+            { text = " ", texthl = "DiagnosticSignInfo" })
+        vim.fn.sign_define("DiagnosticSignHint",
+            { text = "", texthl = "DiagnosticSignHint" })
+
         if vim.fn.argc() == 1 then
             local stat = vim.loop.fs_stat(vim.fn.argv(0))
             if stat and stat.type == "directory" then
@@ -36,12 +47,15 @@ return {
         { "<leader>E", "<leader>fE", desc = "[E]xplorer (cwd)", remap = true },
     },
     opts = {
+        -- Note: Run `:lua require('neo-tree').paste_default_config()` in an emtpy
+        --       buffer to see the full default configuration
         sort_case_insensitive = true,
         hijack_netrw_behavior = "open_default",
         source_selector = { winbar = false, statusline = true },
         buffers = { follow_current_files = true },
         default_component_configs = {
             container = { enable_character_fade = true },
+            name = { trailing_slash = true },
             indent = {
                 with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
                 indent_size = 4,
@@ -50,7 +64,11 @@ return {
                 expander_expanded = "",
                 expander_highlight = "NeotreeExpander",
             },
-            name = { trailing_slash = true },
+            -- icon = {
+            --     folder_closed = "",
+            --     folder_open = "",
+            --     folder_empty = "ﰊ",
+            -- },
         },
         window = {
             mappings = {
@@ -77,9 +95,9 @@ return {
         },
         event_handlers = {
             {
+              -- Close Neotree after opening a file
                 event = "file_opened",
                 handler = function(file_path)
-                    -- Auto close
                     require("neo-tree").close_all()
                 end
             },

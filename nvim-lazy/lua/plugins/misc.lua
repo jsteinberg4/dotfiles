@@ -4,17 +4,24 @@
 
 return {
     { 'nvim-lualine/lualine.nvim' }, -- Fancier statusline
-    { 'lukas-reineke/indent-blankline.nvim' }, -- add indent guides on bank lines
+    {
+        -- add indent guides on bank lines
+        'lukas-reineke/indent-blankline.nvim',
+        char = '┊',
+        show_trailing_blankline_indent = false,
+    },
     { -- "gc" to comment regions
         'numToStr/Comment.nvim'
-    }, 
+    },
 
-    { -- persistent & powerful undo abilities. Load when called.
+    {
+        -- persistent & powerful undo abilities. Load when called.
         "mbbill/undotree",
         cmd = { "UndotreeShow", "UndotreeToggle" },
     },
 
-    { -- better window movement
+    {
+        -- better window movement
         's1n7ax/nvim-window-picker',
         version = 'v1.*',
         keys = {
