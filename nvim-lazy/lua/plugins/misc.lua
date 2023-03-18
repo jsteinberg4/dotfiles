@@ -27,7 +27,7 @@ return {
         },
     },
     {
-      -- "gc" to comment regions
+        -- "gc" to comment regions
         'numToStr/Comment.nvim',
         event = { "BufReadPre", "BufNewFile" },
     },
@@ -36,6 +36,9 @@ return {
         -- persistent & powerful undo abilities. Load when called.
         "mbbill/undotree",
         cmd = { "UndotreeShow", "UndotreeToggle" },
+        keys = {
+            { "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle undotree" },
+        },
     },
 
     {
