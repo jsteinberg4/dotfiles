@@ -27,7 +27,7 @@ return {
             sync_install = false,
             indent = { enable = true, disable = "python" },
             highlight = { enable = true },
-            -- This may require a plugin? not sure
+            -- This seems related to ts_context_commentstring
             context_commentstring = { enable = true, enable_autocmd = false },
             rainbow = {
                 -- Rainbow brackets config

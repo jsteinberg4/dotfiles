@@ -27,12 +27,6 @@ return {
         },
     },
     {
-        -- "gc" to comment regions
-        'numToStr/Comment.nvim',
-        event = { "BufReadPre", "BufNewFile" },
-    },
-
-    {
         -- persistent & powerful undo abilities. Load when called.
         "mbbill/undotree",
         cmd = { "UndotreeShow", "UndotreeToggle" },
@@ -68,5 +62,23 @@ return {
             },
             other_win_hl_color = "#e35e4f",
         },
+    },
+
+    -- Comments
+    { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
+    {
+        "echasnovski/mini.comment",
+        version = "*",
+        event = "VeryLazy",
+        opts = {
+            hooks = {
+                pre = function()
+                    require("ts_context_commentstring.internal").update_commentstring({})
+                end,
+            },
+        },
+        config = function(_, opts)
+            require("mini.comment").setup(opts)
+        end,
     },
 }

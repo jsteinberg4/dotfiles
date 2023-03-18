@@ -58,19 +58,18 @@ return {
             -- -- Callback when zenmode closes
             -- on_close = function()
             -- end,
+            twilight = { enabled = true },
         },
-        depencencies = {
-            {
-                "folke/twilight.nvim",
-                cmd = "Twilight",
-                opts = {
-                    inactive = true,
-                    exclude = { -- Filetypes to exclude (file extension)
-                        'txt',
-                        'md',
-                    }
-                },
-            },
+    },
+    {
+        "folke/twilight.nvim",
+        cmd = "ZenMode",
+        opts = {
+            inactive = true,
+            exclude = { -- Filetypes to exclude (file extension)
+                'txt',
+                'md',
+            }
         },
     },
 }

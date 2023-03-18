@@ -2,6 +2,7 @@
 -- =    Telescope.nvim
 -- =============================
 
+-- FIXME: find files stops working randomly
 return {
     'nvim-telescope/telescope.nvim',
     cmd = "Telescope",
