@@ -31,16 +31,11 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath) -- Adds lazy.nvim to NeoVim's path
 -- Set mapleader before ANYTHING else bc of weird bugs
 vim.g.mapleader = ' '
 
-require("config.options")
+require("config")
 require("lazy").setup({
     spec = {
-        -- Import any modules, plugins, etc. here. eg:
-        -- { import = "lazyvim.plugins.extras.lang.typescript" },
-        -- { import = "lazyvim.plugins.extras.lang.json" },
-        -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
-        -- import/override with your plugins
+        -- Import any modules, plugins, etc. here.
         { import = "plugins" },
-        -- { import = "config" },
     },
     -- Configuration options for lazy.nvim itself
     defaults = {
