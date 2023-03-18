@@ -4,11 +4,12 @@
 
 return {
     "nvim-neo-tree/neo-tree.nvim",
-    cmd = "NeoTree", -- Load when the NeoTree coimmand is called
+    cmd = "Neotree", -- Load when the Neotree command is called
+    branch = "v2.x",
     dependencies = {
         'nvim-lua/plenary.nvim',
-        'nvim-tree/nvim-web-devicons',
         "MunifTanjim/nui.nvim",
+        'nvim-tree/nvim-web-devicons',
     },
     init = function()
         vim.g.neo_tree_remove_legacy_commands = 1
@@ -20,15 +21,16 @@ return {
         end
     end,
     deactivate = function()
-        vim.cmd([[NeoTree close]])
+        vim.cmd([[Neotree close]])
     end,
     keys = {
         {
             "<leader>fe",
-            require('neo-tree.command').execute({
-                toggle = true,
-                dir = vim.loop.cwd(),
-            }),
+            ":silent! Neotree<CR>",
+            -- require('neo-tree.command').execute({
+            --     toggle = true,
+            --     dir = vim.loop.cwd(),
+            -- }),
             desc = "[F]ile [E]xplorer (cwd)",
         },
         { "<leader>E", "<leader>fE", desc = "[E]xplorer (cwd)", remap = true },
@@ -43,10 +45,10 @@ return {
             indent = {
                 with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
                 indent_size = 4,
-                padding = 2, -- Padding on LHS
+                padding = 2,           -- Padding on LHS
                 expander_collapsed = "",
                 expander_expanded = "",
-                expander_highlight = "NeoTreeExpander",
+                expander_highlight = "NeotreeExpander",
             },
             name = { trailing_slash = true },
         },
@@ -104,7 +106,7 @@ return {
         -- I need these for work.
         git_status_async_options = {
             batch_size = 1000, -- how many lines of git status results to process at a time
-            batch_delay = 10, -- delay in ms between batches. Spreads out the workload to let other processes run.
+            batch_delay = 10,  -- delay in ms between batches. Spreads out the workload to let other processes run.
             -- How many lines of git status results to process. Anything after this will be dropped.
             -- Anything before this will be used. The last items to be processed are the untracked files.
             max_lines = 10000,

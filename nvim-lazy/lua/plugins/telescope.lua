@@ -1,12 +1,11 @@
 -- =============================
 -- =    Telescope.nvim
 -- =============================
-local builtin = require("telescope.builtin")
 
 return {
     'nvim-telescope/telescope.nvim',
     cmd = "Telescope",
-    branch = '0.1.x',
+    version = false,
     init = function() -- FIXME: check if this even works
         -- TODO: Incorporate extensions
         pcall(require('telescope').load_extension, 'fzf')
@@ -16,7 +15,8 @@ return {
         { -- Faster(?) fuzzy find algorithm
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make',
-            cond = vim.fn.executable 'make' == 1
+            cond = vim.fn.executable 'make' == 1,
+            cmd = "Telescope",
         },
         { 'nvim-tree/nvim-web-devicons' },
     },
@@ -69,32 +69,32 @@ return {
         {
             "<leader>/",
             function()
-                builtin.current_buffer_fuzzy_find(
-                    require("telescope.themes").get_dropdown({ previewer = false })
+                require("telescope.builtin").current_buffer_fuzzy_find(
+                require("telescope.themes").get_dropdown({ previewer = false })
                 )
             end,
             desc = "[/] Fuzzily search in current buffer]",
         },
         {
-            "<leader>?", builtin.oldfiles, desc = "[?] Find recently opened files",
+            "<leader>?", function() require("telescope.builtin").oldfiles() end, desc = "[?] Find recently opened files",
         },
         {
-            "<leader>sf", builtin.find_files, desc = "[S]earch [F]iles",
+            "<leader>sf", function() require("telescope.builtin").find_files() end, desc = "[S]earch [F]iles"
         },
         {
-            "<leader>sg", builtin.git_files, desc = "[S]earch [G]it files",
+            "<leader>sg", function() require("telescope.builtin").git_files() end, desc = "[S]earch [G]it files",
         },
         {
-            "<leader>sh", builtin.help_tags, desc = "[S]earch [H]elp"
+            "<leader>sh", function() require("telescope.builtin").help_tags() end, desc = "[S]earch [H]elp"
         },
         {
-            "<leader>sl", builtin.live_grep, desc = "[S]earch [L]ive by grep"
+            "<leader>sl", function() require("telescope.builtin").live_grep() end, desc = "[S]earch [L]ive by grep"
         },
         {
-            "<leader>sd", builtin.diagnostics, desc = "[S]earch [D]iagnostics"
+            "<leader>sd", function() require("telescope.builtin").diagnostics() end, desc = "[S]earch [D]iagnostics"
         },
         {
-            "<leader>sk", builtin.keymaps, desc = "[S]earch [K]eymaps"
+            "<leader>sk", function() require("telescope.builtin").keymaps() end, desc = "[S]earch [K]eymaps"
         },
     },
 }

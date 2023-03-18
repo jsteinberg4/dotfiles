@@ -7,7 +7,7 @@ return {
         dependencies = {
             { "mfussenegger/nvim-dap" },
             { "mfussenegger/nvim-dap-python" },
-        }
+        },
         cmd = { "DapContinue" }, -- TODO: may want to change these commands
     },
     {

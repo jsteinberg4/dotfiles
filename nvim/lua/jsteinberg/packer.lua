@@ -28,11 +28,11 @@ require("packer").startup(function(use)
 
     -- Optimizations to improve startup time
     use("lewis6991/impatient.nvim")
-
+    
     -- Centers window & Dims inactive regions
     use('folke/twilight.nvim')
     use('folke/zen-mode.nvim')
-
+    
     -- Colors
     use("sainnhe/gruvbox-material")
     use("overcache/NeoSolarized")
@@ -44,7 +44,7 @@ require("packer").startup(function(use)
     --         require 'todo-comments'.setup()
     --     end,
     -- }
-
+    
     -- Telescope fuzzy finding files, keymaps, etc.
     use {
         'nvim-telescope/telescope.nvim',
@@ -59,19 +59,19 @@ require("packer").startup(function(use)
             { 'nvim-tree/nvim-web-devicons' },
         },
     }
-
+    
     -- Git integration
     use("tpope/vim-fugitive")
     use("lewis6991/gitsigns.nvim")
-
+    
     use('nvim-lualine/lualine.nvim') -- Fancier statusline
     use('lukas-reineke/indent-blankline.nvim') -- add indent guides on bank lines
     use('numToStr/Comment.nvim') -- "gc" to comment regions
-
+    
     use("mbbill/undotree", { -- persistent & powerful undo abilities
         opt = true,
     })
-
+    
     use {
         "nvim-neo-tree/neo-tree.nvim",
         branch = 'v2.x',
@@ -90,12 +90,12 @@ require("packer").startup(function(use)
             end
         end,
     }
-
+    
     use { -- better window movement
         's1n7ax/nvim-window-picker',
         tag = 'v1.*',
     }
-
+    
     -- Language server stuff
     use { -- Treesitter for highlighting + other goodies
         'nvim-treesitter/nvim-treesitter',
@@ -103,7 +103,7 @@ require("packer").startup(function(use)
             pcall(require('nvim-treesitter.install').update { with_sync = true })
         end,
     }
-
+    
     -- =============================
     -- =    LSP Setup
     -- =============================
@@ -121,8 +121,8 @@ require("packer").startup(function(use)
             { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
-
-
+    
+    
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },
             { 'hrsh7th/cmp-buffer' },
@@ -130,7 +130,7 @@ require("packer").startup(function(use)
             { 'saadparwaiz1/cmp_luasnip' },
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lua' },
-
+    
             -- Snippets
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
@@ -156,13 +156,13 @@ require("packer").startup(function(use)
             { "nvim-neotest/neotest-python" },
         }
     }
-
+    
     if packer_bootstrap then
         require('packer').sync()
     end
 end)
 
-if is_bootstrap then
+if iootstrap then
     print '=================================='
     print '    Plugins are being installed'
     print '    Wait until Packer completes,'
