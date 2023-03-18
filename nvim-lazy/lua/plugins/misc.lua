@@ -3,12 +3,28 @@
 -- =============================
 
 return {
-    { 'nvim-lualine/lualine.nvim' }, -- Fancier statusline
+    {
+        -- Fancier statusline
+        'nvim-lualine/lualine.nvim',
+        event = "VeryLazy",
+        opt = {
+            icons_enabled = false,
+            -- theme = vim.g.my_colors,
+            component_separators = '|',
+            section_separators = '',
+        }
+    },
     {
         -- add indent guides on bank lines
         'lukas-reineke/indent-blankline.nvim',
-        char = '┊',
-        show_trailing_blankline_indent = false,
+        opts = {
+            char = "│",
+            show_trailing_blankline_indent = false,
+            show_current_context = false,
+            filetype_exclude = {
+                "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy"
+            },
+        },
     },
     { -- "gc" to comment regions
         'numToStr/Comment.nvim'
