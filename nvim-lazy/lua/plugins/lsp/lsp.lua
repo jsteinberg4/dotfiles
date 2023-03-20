@@ -1,34 +1,123 @@
 -- =============================
 -- =    LSP Setup
 -- =============================
+
 return {
-    { 'j-hui/fidget.nvim' }, -- Status updates for LSP
+    -- neovim-lsp
     {
-        'VonHeikemen/lsp-zero.nvim',
+        "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-
-
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-
-            -- Snippets
-            { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
-        }
+        },
+        opts = {
+        },
+        config = function(_, opts)
+        end,
     },
+    -- Formatters w/ null-ls
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = { "mason.nvim" },
+        opts = function()
+            -- Configures options for the null-ls.nvim plugin
+            local nls = require("null-ls")
+            return {
+                root_dir = require("null-ls.utils").root_pattern(".null-ls.root", "Makefile", ".git")
+                -- TODO :: Consider configuring these more
+                sources = {
+                    -- Diagnostics
+                    nls.builtins.diagnostics.todo_comments,
+                    nls.builtins.diagnostics.pylint,
+                    -- Python Formatters:
+                    nls.builtins.formatting.black, -- Black formatting
+                    nls.builtins.formatting.autoflake, -- Remove unused imports
+                    nls.builtins.formatting.usort, -- Sort imports
 
+                    -- Other formatters
+                    nls.builtins.formatting.stylua, -- Lua formatter
+                    nls.builtins.formatting.shfmt, -- Bash formatting
+                }
+            }
+        end,
+    },
+    -- Mason as a LSP/tool installer
+    {
+        "williambowman/mason.nvim",
+        cmd = "Mason",
+        keys = { { "<leader>cm", vim.cmd([[Mason]]), desc = "Launch [c]ommand [m]ason" } },
+        opts = {
+            -- From old config
+            -- -- Langauge servers to always install
+            -- lsp.ensure_installed({
+            --     'pyright',
+            --     'lua_ls',
+            --     'bashls',
+            --     'jsonls',
+            --     'marksman',
+            --     'yamlls',
+            --     'html',
+            --     'cssls',
+            -- })
+            ensure_installed = {
+                "stylua",
+                "shfmt",
+            },
+        },
+        ---@param opts MasonSettings | {ensure_installed: string[]}
+        config = function(_, opts)
+            -- Function to install required plugins w/ Mason
+            require("mason").setup(opts)
+            local registry = require("mason-registry")
 
+            -- Loops over all plugins in mason.opts.ensure_installed. Installs.
+            local function ensure_installed()
+                for _, tool in ipairs(opts.ensure_installed) do
+                    local p = registry.get_package(tool)
+                    if not p:is_installed() then
+                        p:install()
+                    end
+                end
+            end
+
+            -- Use the function defined above to install everything
+            if registry.refresh then
+                registry.refresh(ensure_installed)
+            else
+                ensure_installed()
+            end
+        end,
+    },
 }
+
+-- return {
+--     { 'j-hui/fidget.nvim' }, -- Status updates for LSP
+--     {
+--         'VonHeikemen/lsp-zero.nvim',
+--         event = { "BufReadPre", "BufNewFile" },
+--         dependencies = {
+--             -- LSP Support
+--             { 'neovim/nvim-lspconfig' },
+--             { 'williamboman/mason.nvim' },
+--             { 'williamboman/mason-lspconfig.nvim' },
+--
+--
+--             -- Autocompletion
+--             { 'hrsh7th/nvim-cmp' },
+--             { 'hrsh7th/cmp-buffer' },
+--             { 'hrsh7th/cmp-path' },
+--             { 'saadparwaiz1/cmp_luasnip' },
+--             { 'hrsh7th/cmp-nvim-lsp' },
+--             { 'hrsh7th/cmp-nvim-lua' },
+--
+--             -- Snippets
+--             { 'L3MON4D3/LuaSnip' },
+--             { 'rafamadriz/friendly-snippets' },
+--         }
+--     },
+--
+--
+-- }
 
 -- TODO: OLD SETUP
 -- local lsp = require('lsp-zero')
