@@ -4,17 +4,6 @@
 
 return {
 	{
-		-- Fancier statusline
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		opts = {
-			icons_enabled = false,
-			-- theme = vim.g.my_colors,
-			component_separators = "|",
-			section_separators = "",
-		},
-	},
-	{
 		-- add indent guides on bank lines
 		"lukas-reineke/indent-blankline.nvim",
 		opts = {

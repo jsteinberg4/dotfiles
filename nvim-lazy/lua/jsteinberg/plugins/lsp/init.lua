@@ -82,7 +82,11 @@ return {
 			end)
 
 			-- LSP Diagnostics
-			-- TODO: Diagnostic symbols conf. Uses the lazyvim.config fancy module (not implemented here)
+			for name, icon in pairs(require("jsteinberg.config").icons.diagnostics) do
+				name = "DiagnosticSign" .. name
+				vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+			end
+			vim.diagnostic.config(opts.diagnostics)
 
 			local servers = opts.servers
 			local capabilities =
