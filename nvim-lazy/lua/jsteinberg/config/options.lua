@@ -55,6 +55,3 @@ vim.g.netrw_winsize = 25
 
 -- Python provider setup
 vim.g.python3_host_prog = os.getenv("HOME") .. "/environments/neovim-provider/bin/python3"
-
--- Virtual text for debugging and errors
-vim.diagnostic.config({ virtual_text = true })

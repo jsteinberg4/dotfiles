@@ -31,11 +31,11 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath) -- Adds lazy.nvim to NeoVim's path
 -- Set mapleader before ANYTHING else bc of weird bugs
 vim.g.mapleader = ' '
 
-require("config")
+require("jsteinberg.config")
 require("lazy").setup({
     spec = {
         -- Import any modules, plugins, etc. here.
-        { import = "plugins" },
+        { import = "jsteinberg.plugins" },
     },
     -- Configuration options for lazy.nvim itself
     defaults = {
@@ -50,3 +50,6 @@ require("lazy").setup({
     },
 })
 vim.cmd.colorscheme("tokyonight")
+
+vim.keymap.set("n", "<leader>lz", "<CMD>Lazy<CR>", {
+    desc = "Open [l]a[z]y", silent = true })

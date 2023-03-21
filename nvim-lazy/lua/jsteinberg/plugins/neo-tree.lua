@@ -37,12 +37,13 @@ return {
     keys = {
         {
             "<leader>fe",
-            ":silent! Neotree<CR>",
+            "<CMD>Neotree<CR>",
             -- require('neo-tree.command').execute({
             --     toggle = true,
             --     dir = vim.loop.cwd(),
             -- }),
             desc = "[F]ile [E]xplorer (cwd)",
+            silent = true,
         },
         { "<leader>E", "<leader>fE", desc = "[E]xplorer (cwd)", remap = true },
     },
