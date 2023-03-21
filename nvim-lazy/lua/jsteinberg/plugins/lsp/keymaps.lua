@@ -52,7 +52,7 @@ function M.get()
 		}
 
 		-- Setup symbol renaming
-		if require("lazyvim.util").has("inc-rename.nvim") then
+		if require("jsteinberg.util").has("inc-rename.nvim") then
 			M._keys[#M._keys + 1] = {
 				"<leader>cr",
 				function()

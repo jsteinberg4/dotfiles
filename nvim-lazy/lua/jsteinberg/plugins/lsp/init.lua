@@ -205,36 +205,10 @@ return {
 	},
 }
 
--- return {
---     { 'j-hui/fidget.nvim' }, -- Status updates for LSP
-
---
---
--- }
-
 -- TODO: OLD SETUP
+--     { 'j-hui/fidget.nvim' }, -- Status updates for LSP
 -- local lsp = require('lsp-zero')
 -- lsp.preset("recommended")
---
--- local cmp = require('cmp')
--- local cmp_select = { cmp.SelectBehavior.Select }
--- local cmp_mappings = lsp.defaults.cmp_mappings({
---     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
---     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
---     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
---     ["<C-Space>"] = cmp.mapping.complete(), -- <C-Space> triggers complete
--- })
---
--- lsp.setup_nvim_cmp({
---     -- See nvim-cmp docs for options
---     mapping = cmp_mappings,
---     sources = {
---         { name = 'path' },
---         { name = 'vim_lsp', keyword_length = 3 },
---         { name = 'buffer', keyword_length = 3 },
---         { name = 'luasnip', keyword_length = 2 },
---     }
--- })
 --
 --
 -- -- local null_ls = require('null-ls')
