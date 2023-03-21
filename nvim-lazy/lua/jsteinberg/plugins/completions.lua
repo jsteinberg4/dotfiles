@@ -89,14 +89,13 @@ return {
 					{ name = "path" },
 				}),
 				formatting = {
-					-- TODO: Get this icons thing setup
-					-- format = function(_, item)
-					-- 	local icons = require("lazyvim.config").icons.kinds
-					-- 	if icons[item.kind] then
-					-- 		item.kind = icons[item.kind] .. item.kind
-					-- 	end
-					-- 	return item
-					-- end,
+					format = function(_, item)
+						local icons = require("jsteinberg.config").icons.kinds
+						if icons[item.kind] then
+							item.kind = icons[item.kind] .. item.kind
+						end
+						return item
+					end,
 				},
 				experimental = { -- TODO : What does this do?
 					ghost_text = {
