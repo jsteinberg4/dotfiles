@@ -6,12 +6,6 @@ return {
 		-- Fancier statusline
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		-- opts = {
-		-- 	icons_enabled = false,
-		-- 	-- theme = vim.g.my_colors,
-		-- 	component_separators = "|",
-		-- 	section_separators = "",
-		-- },
 		opts = function(plugin)
 			local icons = require("jsteinberg.config").icons
 
@@ -97,6 +91,21 @@ return {
 					end,
 				},
 				extensions = { "neo-tree" },
+			}
+		end,
+	},
+
+	-- LSP symbol navigation for Lualine
+	{
+		"SmiteshP/nvim-navic",
+		lazy = true,
+		init = function() end,
+		opts = function()
+			return {
+				separator = " ",
+				highlight = true,
+				depth_limit = 5,
+				icons = require("jsteinberg.config").icons.kinds,
 			}
 		end,
 	},
