@@ -181,6 +181,7 @@ return {
 			ensure_installed = {
 				"stylua",
 				"shfmt",
+				"pyright",
 			},
 		},
 		---@param opts MasonSettings | {ensure_installed: string[]}
@@ -210,7 +211,6 @@ return {
 }
 
 -- TODO: OLD SETUP
---     { 'j-hui/fidget.nvim' }, -- Status updates for LSP
 -- local lsp = require('lsp-zero')
 -- lsp.preset("recommended")
 --
@@ -263,7 +263,6 @@ return {
 --         })
 --     end
 --
---     -- require('lsp_signature').on_attach(lsp_signature_cfg, bufnr)
 --
 --     -- LSP Buffer keybinds
 --     bind('n', "<leader>vrn", vim.lsp.buf.rename, "[V]ariable [R]e[n]ame")
@@ -304,23 +303,3 @@ return {
 --     })
 -- end
 --
--- lsp.on_attach(on_attach)
--- -- null_ls.setup({
--- --     on_attach = on_attach,
--- --     sources = {
--- --         --[[ null_ls.builtins.formatting.stylua, ]]
--- --         null_ls.builtins.diagnostics.eslint,
--- --         null_ls.builtins.completion.spell,
--- --     },
--- -- })
---
---
--- -- ==============================
--- --      Run at End
--- -- ==============================
--- require('fidget').setup({})
---
--- lsp.setup() -- Run this at the end of file
--- vim.diagnostic.config({
---     virtual_text = true, -- Floating diagnostic text @ end of line
--- })

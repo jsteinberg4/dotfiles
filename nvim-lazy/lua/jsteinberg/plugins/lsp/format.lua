@@ -6,14 +6,13 @@ local M = { autoformat = true }
 
 -- Toggle autoformatting on/off
 function M.toggle()
-	if not vim.b.autoformat then
+	if vim.b.autoformat == false then
 		vim.b.autoformat = nil
 		M.autoformat = true
 	else
 		M.autoformat = not M.autoformat
 	end
-
-	-- Notify of the change
+	-- Notify of change
 	if M.autoformat then
 		Util.info("Enabled format on save", { title = "Format" })
 	else
