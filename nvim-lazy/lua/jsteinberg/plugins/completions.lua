@@ -3,7 +3,7 @@
 -- =============================
 
 return {
-	{
+	{ -- Snippets
 		"L3MON4D3/LuaSnip",
 		build = "make install_jsregexp", -- Optional
 		-- version = "<CurrentMajor>.*",
@@ -92,9 +92,9 @@ return {
 						return item
 					end,
 				},
-				experimental = { -- TODO : What does this do?
+				experimental = {
 					ghost_text = true,
-					-- ghost_text = {
+					-- ghost_text= {
 					-- 	hl_group = "LspCodeLens",
 					-- },
 				},

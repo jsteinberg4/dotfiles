@@ -43,19 +43,35 @@ return {
 
 	-- Comments
 	{ "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-	{
-		"echasnovski/mini.comment",
-		version = "*",
+	{ -- which-key
+		"folke/which-key.nvim",
 		event = "VeryLazy",
-		opts = {
-			hooks = {
-				pre = function()
-					require("ts_context_commentstring.internal").update_commentstring({})
-				end,
-			},
-		},
+		opts = { plugins = { spelling = true } },
 		config = function(_, opts)
-			require("mini.comment").setup(opts)
+			require("which-key").setup(opts)
+
+			local keymaps = {
+				mode = { "n", "v" },
+				["g"] = { name = "+goto" },
+				["gz"] = { name = "+surrond" },
+				["]"] = { name = "+next" },
+				["["] = { name = "+prev" },
+				["<leader><tab>"] = { name = "+tabs" },
+				["<leader>b"] = { name = "+buffer" },
+				["<leader>c"] = { name = "+code" },
+				["<leader>f"] = { name = "+file/find" },
+				["<leader>g"] = { name = "+git" },
+				["<leader>gh"] = { name = "+hunks" },
+				["<leader>q"] = { name = "+quit/session" },
+				["<leader>s"] = { name = "+search" },
+				["<leader>u"] = { name = "+ui" },
+				["<leader>w"] = { name = "+windows" },
+				["<leader>x"] = { name = "+diagnostics/quickfix" },
+			}
+			if require("jsteinberg.util").has("noice.nvim") then
+				keymaps["<leader>sn"] = { name = "+noice" }
+			end
+			require("which-key").register(keymaps)
 		end,
 	},
 }

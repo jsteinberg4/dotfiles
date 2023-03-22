@@ -119,7 +119,7 @@ return {
 		keys = {
 			{ "<leader>bn", "<CMD>BufferLineCycleNext<CR>", silent = true, desc = "[b]uffer [n]ext" },
 			{ "<leader>bp", "<CMD>BufferLineCyclePrev<CR>", silent = true, desc = "[b]uffer [p]revious" },
-			{ "<C-W>", "<CMD>BufferLinePickClose<CR>", silent = true, desc = "Pick and close buffer" },
+			{ "<leader><C-W>", "<CMD>BufferLinePickClose<CR>", silent = true, desc = "Pick and close buffer" },
 		},
 		opts = {
 			options = {
@@ -159,25 +159,5 @@ return {
 				"lazy",
 			},
 		},
-	},
-	{ -- Active indent guide & indent text objects
-		"echasnovski/mini.indentscope",
-		version = false,
-		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			symbol = "│",
-			options = { try_as_border = true },
-		},
-		init = function()
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
-				callback = function()
-					vim.b.miniindentscope_disable = true
-				end,
-			})
-		end,
-		config = function(_, opts)
-			require("mini.indentscope").setup(opts)
-		end,
 	},
 }
