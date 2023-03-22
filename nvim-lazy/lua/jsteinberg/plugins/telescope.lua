@@ -27,7 +27,7 @@ return {
 		-- Config options
 		defaults = {
 			winblend = 15, -- Floating window transparency
-			path_display = "smart", -- Only show path differneces
+			path_display = { "truncate", "smart" }, -- Only show path differneces
 			-- From LazyVim:
 			prompt_prefix = " ",
 			selection_caret = " ",

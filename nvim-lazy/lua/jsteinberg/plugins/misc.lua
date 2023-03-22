@@ -4,23 +4,6 @@
 
 return {
 	{
-		-- add indent guides on bank lines
-		"lukas-reineke/indent-blankline.nvim",
-		opts = {
-			char = "│",
-			show_trailing_blankline_indent = false,
-			show_current_context = false,
-			filetype_exclude = {
-				"help",
-				"alpha",
-				"dashboard",
-				"neo-tree",
-				"Trouble",
-				"lazy",
-			},
-		},
-	},
-	{
 		-- persistent & powerful undo abilities. Load when called.
 		"mbbill/undotree",
 		cmd = { "UndotreeShow", "UndotreeToggle" },
