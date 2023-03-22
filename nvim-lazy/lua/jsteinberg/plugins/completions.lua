@@ -1,12 +1,7 @@
---     {
---         'VonHeikemen/lsp-zero.nvim',
---         event = { "BufReadPre", "BufNewFile" },
---         dependencies = {
---             -- Autocompletion
---
---             -- Snippets
---         }
---     },
+-- =============================
+-- =    Code completions
+-- =============================
+
 return {
 	{
 		"L3MON4D3/LuaSnip",
@@ -98,9 +93,10 @@ return {
 					end,
 				},
 				experimental = { -- TODO : What does this do?
-					ghost_text = {
-						hl_group = "LspCodeLens",
-					},
+					ghost_text = true,
+					-- ghost_text = {
+					-- 	hl_group = "LspCodeLens",
+					-- },
 				},
 			}
 		end,

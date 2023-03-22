@@ -1,30 +1,38 @@
---  project tree
--- vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "[P]roject [V]iew" })
+local function map(mode, lhs, rhs, opts)
+	--	local keys = require("lazy.core.handler").handlers.keys
+	---@cast keys LazyKeysHandler
+	-- do not create the keymap if a lazy keys handler exists
+	--	if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+	opts = opts or {}
+	opts.silent = opts.silent ~= false -- Silent by default
+	vim.keymap.set(mode, lhs, rhs, opts)
+	--	end
+end
 
 -- Make space do nothing in normal/vis modes
-vim.keymap.set({ 'n', 'v' }, '<Space>', "<Nop>", { silent = true })
+map({ "n", "v" }, "<Space>", "<Nop>")
 
 -- Add CTRL+S to save b/c of muscle memory for other apps
-vim.keymap.set({ 'n', 'v', 'i' }, '<C-s>', vim.cmd.write, { desc = "Save document" })
+map({ "n", "v", "i" }, "<C-s>", vim.cmd.write, { desc = "Save document" })
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("v", "q", "<Esc>", { desc = "q to exit visual mode" })
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
+map("v", "q", "<Esc>", { desc = "q to exit visual mode" })
 
 -- Join line w/o moving cursor
-vim.keymap.set("n", "J", "mzJ`z")
+map("n", "J", "mzJ`z")
 
-vim.keymap.set("n", "Q", "<nop>")
+map("n", "Q", "<nop>")
 
 -- Use 'q' to cancel visual mode, instead of just Escape
-vim.keymap.set("v", "q", "<Esc>")
+map("v", "q", "<Esc>")
 
 -- #####################
 -- Always keep cursor centered!
 -- #####################
-vim.keymap.set("n", "gg", "ggzz", { desc = "GOTO top, center cursor" })
-vim.keymap.set("n", "G", "Gzz", { desc = "GOTO bottom, center cursor" })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down, center cursor" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up, center cursor" })
-vim.keymap.set("n", "n", "nzzzv", { desc = "Keep cursor centered while searching" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Center cursor while searching" })
+map("n", "gg", "ggzz", { desc = "GOTO top, center cursor" })
+map("n", "G", "Gzz", { desc = "GOTO bottom, center cursor" })
+map("n", "<C-d>", "<C-d>zz", { desc = "Page down, center cursor" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Page up, center cursor" })
+map("n", "n", "nzzzv", { desc = "Keep cursor centered while searching" })
+map("n", "N", "Nzzzv", { desc = "Center cursor while searching" })
