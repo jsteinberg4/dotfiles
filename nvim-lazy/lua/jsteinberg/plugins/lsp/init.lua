@@ -49,7 +49,7 @@ return {
 			---@type lspconfig.options
 			servers = {
 				-- set mason = false if you don't want a server installed by mason
-				lua_ls = {
+				stylua = {
 					settings = {
 						Lua = {
 							diagnostics = { globals = { "vim" } },
