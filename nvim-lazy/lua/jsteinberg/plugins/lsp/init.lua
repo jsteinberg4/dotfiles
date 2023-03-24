@@ -45,6 +45,7 @@ return {
 				timeout_ms = nil,
 			},
 
+			-- Use this table to set options to pass into that server's setup function
 			-- LSP Server settings
 			---@type lspconfig.options
 			servers = {
@@ -58,9 +59,14 @@ return {
 						},
 					},
 				},
-				pyright = {
-					settings = {},
-				},
+				-- pyright = {
+				-- 	filetypes = { "python", "pyc" },
+				-- 	settings = {
+				-- 		python = {
+				-- 			venvPath = os.getenv("HOME") .. "/environments/",
+				-- 		},
+				-- 	},
+				-- },
 			},
 			-- you can do any additional lsp server setup here
 			-- return true if you don't want this server to be setup with lspconfig
@@ -150,10 +156,10 @@ return {
 				-- TODO :: Consider configuring these more
 				sources = {
 					-- Python Formatters
-					nls.builtins.formatting.autoflake, -- Remove unused imports
-					nls.builtins.formatting.black, -- Black formatting
-					nls.builtins.diagnostics.pylint, -- Linter
-					nls.builtins.formatting.usort, -- Sort imports
+					-- nls.builtins.formatting.autoflake, -- Remove unused imports
+					-- nls.builtins.formatting.black, -- Black formatting
+					-- nls.builtins.diagnostics.pylint, -- Linter
+					-- nls.builtins.formatting.usort, -- Sort imports
 
 					-- Other formatters
 					nls.builtins.formatting.stylua, -- Lua formatter
@@ -185,10 +191,10 @@ return {
 				"shfmt",
 				-- Python:
 				"pyright",
-				"pylint",
-				"usort",
-				"autoflake",
-				"black",
+				-- "pylint",
+				-- "usort",
+				-- "autoflake",
+				-- "black",
 			},
 		},
 		---@param opts MasonSettings | {ensure_installed: string[]}
