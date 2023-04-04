@@ -11,6 +11,7 @@ vim.o.errorbells = false
 vim.o.expandtab = true -- Use spaces instead of tabs
 vim.o.formatoptions = "jcroqlnt" -- Default is "tcqj
 vim.o.guicursor = ""
+vim.o.guifont = "JetBrainsMono Nerd Font"
 vim.o.grepformat = "%f:%l:%c:%m" -- Grep: result formatting
 vim.o.grepprg = "rg --vimgrep" -- Grep: Use ripgrep
 vim.o.hlsearch = false -- Highlight search results

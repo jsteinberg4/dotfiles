@@ -41,7 +41,6 @@ return {
 				"bash",
 				"c",
 				"css",
-				"help",
 				"html",
 				"javascript",
 				"json",
