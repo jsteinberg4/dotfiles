@@ -17,6 +17,7 @@ map({ "n", "v", "i" }, "<C-s>", vim.cmd.write, { desc = "Save document" })
 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
+-- FIXME: I think this blocks registers/macros?
 map("v", "q", "<Esc>", { desc = "q to exit visual mode" })
 
 -- Join line w/o moving cursor
@@ -25,6 +26,7 @@ map("n", "J", "mzJ`z")
 map("n", "Q", "<nop>")
 
 -- Use 'q' to cancel visual mode, instead of just Escape
+-- FIXME: I think this blocks registers/macros?
 map("v", "q", "<Esc>")
 
 -- #####################
