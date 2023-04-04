@@ -1,3 +1,6 @@
 [submodule "alacritty/alacritty-theme"]
 	path = alacritty/alacritty-theme
 	url = git@github.com:alacritty/alacritty-theme
+[submodule "NvChad"]
+	path = NvChad
+	url = git@github.com:jsteinberg4/NvChad.git
