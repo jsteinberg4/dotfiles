@@ -13,7 +13,7 @@ import:
   #            omni, one_dark, palenight, papercolor_dark, papertheme (if needed),
   #            pencil_light, snazzy, solarized_dark, solarized_light, thelovelace,
   #            wombat,
-  - ~/.config/alacritty/alacritty-theme/themes/solarized_dark.yaml
+  - ~/.config/alacritty/alacritty-theme/themes/nord.yaml
 
 # Any items in the `env` entry will be added as environment variables.
 # Some entries may override variables set by alacritty itself.
