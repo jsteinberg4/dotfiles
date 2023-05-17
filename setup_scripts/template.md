@@ -1,37 +1,39 @@
-Setup Script Template
-----
+# Setup Script Template
 
 * `dotfiles/setup.sh` uses a [template method pattern](https://refactoring.guru/design-patterns/template-method) to run the installer for each script.
 * These template methods are:
-	- `run_install`:  Executes any steps necessary to install the given program
-	- `clear_installers`: Unsets run_install and any other functions. Probably unecessary, but prevents any scripts from unintentionally running a function defined by another script.
-* In addition, scripts should define the variable `NAME` as the name of the program. This is used to display the program name to the user.
-* **NOTE**: Scripts will not be discovered unless they use the `.sh` file extension!
+  * `run_install`:  Executes any steps necessary to install the given program
+  * `clear_installers`: Unsets run_install and any other functions.
+  Probably unecessary, but prevents any scripts from unintentionally running a
+  function defined by another script.
+* Scripts should define the variable `NAME` as the name of the program.
+  This is used to display the program name to the user.
+* **NOTE**: Only scripts using the `.sh` file extension will be executed!
 
 ----
 
-### Example Setup Script
+## Example Setup Script
 
-```
+```sh
 #################
 # MyProgram Setup
 #################
 NAME="MyProgram"
 run_install() {
-	line "Installing $MyProgram.app from homebrew"
-	... # Do some installation stuff
-	_install_helper "SOS"
-	... # Do more stuff
+  line "Installing $MyProgram.app from homebrew" 
+  ... # Do some installation
+  _install_helper "SOS"
+  ... # Do more
 }
 
 _install_helper() {
-	warn "We may have had some complications! I was the only helper :'("
-	... # Do some other stuff
+  warn "We may have had some complications! :'("
+  ... # Do some other
 }
 
 clear_installers() {
-	unset run_install
-	unset _install_helper
+  unset run_install
+  unset _install_helper
 }
 ```
 
