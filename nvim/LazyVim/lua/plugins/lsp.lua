@@ -1,0 +1,2 @@
+-- LSP configurations
+return {}
