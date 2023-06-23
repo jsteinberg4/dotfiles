@@ -1,8 +1,8 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         -- Linters
         "pylint",
         "jsonlint",
@@ -13,22 +13,20 @@ return {
         "black",
         "stylua",
         "usort",
-      },
-    },
+      })
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
+    opts = function(_, opts)
       -- treesitter parsers
-      ensure_installed = {
+      vim.list_extend(opts.ensure_installed, {
         "bash",
         "c",
         "css",
         "gitignore",
         "html",
         "javascript",
-        "json",
-        "jsonc",
         "lua",
         "luadoc",
         "luap",
@@ -36,13 +34,11 @@ return {
         "markdown_inline",
         "python",
         "regex",
-        "tsx",
-        "typescript",
         "vim",
         "vimdoc",
         "yaml",
-      },
-    },
+      })
+    end,
   },
   {
     "neovim/nvim-lspconfig",
