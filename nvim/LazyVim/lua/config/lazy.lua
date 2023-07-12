@@ -6,21 +6,29 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+local lazy_spec = {
+  -- add LazyVim and import its plugins
+  { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+  -- import any extras modules here
+  { import = "lazyvim.plugins.extras.lang.json" },
+  -- { import = "lazyvim.plugins.extras.ui.edgy" },
+  { import = "lazyvim.plugins.extras.util.project" },
+  -- Preconfigured debugging/testing stuff
+  { import = "lazyvim.plugins.extras.test.core" },
+  { import = "lazyvim.plugins.extras.dap.core" },
+}
+
+-- NOTE: Stops lazyvim from trying to install go when not on system
+if vim.fn.executable("go") then
+  vim.list_extend(lazy_spec, { import = "lazyvim.plugins.extras.lang.go" })
+end
+
+-- WARN: Must be the last thing before lazy_spec is used
+vim.list_extend(lazy_spec, { { import = "plugins" } })
 require("lazy").setup({
-  spec = {
-    -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import any extras modules here
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.go" },
-    -- { import = "lazyvim.plugins.extras.ui.edgy" },
-    { import = "lazyvim.plugins.extras.util.project" },
-    -- Preconfigured debugging/testing stuff
-    { import = "lazyvim.plugins.extras.test.core" },
-    { import = "lazyvim.plugins.extras.dap.core" },
-    -- import/override with your plugins
-    { import = "plugins" },
-  },
+  -- Add my plugins folder here to override LazyVim
+  -- import/override with your plugins
+  spec = lazy_spec,
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
     -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.

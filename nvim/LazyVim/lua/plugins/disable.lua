@@ -5,7 +5,7 @@ local to_disable = {
   -- TODO: Disabling flit, sneak until I have a better keymap to get insert/replace mode back (highlight, s)
   "ggandor/leap.nvim",
   "ggandor/flit.nvim",
-  "goolord/alpha-nvim",
+  -- "goolord/alpha-nvim",
 }
 
 -- Disable every plugin in the `to_disable` list
