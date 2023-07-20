@@ -15,3 +15,14 @@ autocmd("BufWinLeave", {
   pattern = "*",
   command = "silent! mkview",
 })
+
+-- WARN: Disable virtual text in python files
+augroup("DisablePyDiagnostics", {})
+autocmd("BufWinEnter", {
+  pattern = "*.py",
+  command = "lua vim.diagnostic.config({virtual_text = false})",
+})
+autocmd("BufWinLeave", {
+  pattern = "*.py",
+  command = "lua vim.diagnostic.config({virtual_text = true})",
+})
