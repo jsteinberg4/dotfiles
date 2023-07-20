@@ -19,7 +19,6 @@ local function map(mode, lhs, func, opts)
 end
 
 map("n", "J", "mzJ`z", { desc = "Join lines w/o moving cursor" })
-map("n", "<leader>lz", "<CMD>Lazy<CR>", { desc = "Open [l]a[z]y UI", silent = true })
 map("n", "gg", "ggzz", { desc = "GOTO top, center cursor" })
 map("n", "G", "Gzz", { desc = "GOTO bottom, center cursor" })
 map("n", "<C-d>", "<C-d>zt", { desc = "Page down, top cursor" })
