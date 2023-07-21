@@ -111,13 +111,6 @@ return {
             },
           },
         },
-        -- pyright = {
-        --   settings = {
-        --     python = {
-        --       venvPath = os.getenv("HOME") .. "/environments/",
-        --     },
-        --   },
-        -- },
         yamlls = {},
       },
     },
