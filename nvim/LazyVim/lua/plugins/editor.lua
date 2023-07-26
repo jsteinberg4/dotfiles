@@ -6,8 +6,24 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = {
       snippet_engine = "luasnip",
+      languages = {
+        python = {
+          template = {
+            annotation_convention = "reST",
+          },
+        },
+      },
     },
     version = "*",
+    keys = {
+      {
+        "<leader>cc",
+        function()
+          require("neogen").generate({})
+        end,
+        desc = "Generate docstring ([c]ode [c]omment)",
+      },
+    },
   },
   {
     -- Code outline sidepanel
