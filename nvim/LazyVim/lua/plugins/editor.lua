@@ -2,6 +2,14 @@
 
 return {
   {
+    "danymat/neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = {
+      snippet_engine = "luasnip",
+    },
+    version = "*",
+  },
+  {
     -- Code outline sidepanel
     -- https://github.com/simrat39/symbols-outline.nvim#default-keymaps
     "simrat39/symbols-outline.nvim",
