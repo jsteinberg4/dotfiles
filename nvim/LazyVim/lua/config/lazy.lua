@@ -12,11 +12,14 @@ local lazy_spec = {
   { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.lang.clangd" },
   { import = "lazyvim.plugins.extras.lang.python" },
-  { import = "lazyvim.plugins.extras.util.project" },
+  { import = "lazyvim.plugins.extras.ui.mini-starter" },
   { import = "lazyvim.plugins.extras.editor.mini-files" },
-  -- Preconfigured debugging/testing stuff
   { import = "lazyvim.plugins.extras.test.core" },
   { import = "lazyvim.plugins.extras.dap.core" },
+  {
+    -- WARN: Must come _after_ mini-starter
+    import = "lazyvim.plugins.extras.util.project",
+  },
 }
 
 -- NOTE: Stops lazyvim from trying to install go when not on system
