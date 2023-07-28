@@ -21,7 +21,7 @@ opt.backup = false
 opt.breakindent = true -- Indent any wrapped lines
 opt.clipboard = "unnamedplus" -- Sync w/ system clipboard
 opt.conceallevel = 3 -- Hide * markup for bold/italic
--- opt.colorcolumn = "80" -- A colored column at x="N"
+opt.colorcolumn = "88" -- A colored column at x="N"
 opt.completeopt = "menu,menuone,noselect" -- Set completeopt for better completion experience
 opt.confirm = true -- Confirm operations instead of failing bc modified buffer
 opt.cursorline = true -- Highlight current line
