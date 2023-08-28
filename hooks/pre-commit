@@ -13,14 +13,13 @@ branch="$(git rev-parse --abrev-ref HEAD)"
 blacklistFile="nvim/LazyVim/lazy-lock.json"
 
 if [ "$branch" != "main" ]; then
-	if git diff --cached --name-only HEAD | grep --quiet --line-regexp --fixed-strings "$blacklistFile"; then
+	if git diff --cached --name-only HEAD |
+		grep --quiet --line-regexp --fixed-strings "$blacklistFile"; then
 		echo "${red}################################"
 		echo "${red}ERROR: "
 		echo "${red}Cannot change $blacklistFile when not on branch main. Aborting commit..."
 		echo "${red}Unstage $blacklistFile to commit."
 		echo "${red}################################"
 		exit 1
-	else
-		echo "Did not block edits"
 	fi
 fi
