@@ -3,22 +3,22 @@
 ############################
 _DIVIDER=""
 for _ in $(seq 1 50); do
-  _DIVIDER=$_DIVIDER-
+	_DIVIDER=$_DIVIDER-
 done
 
 div() {
-  echo "$_DIVIDER\n"
+	echo "$_DIVIDER\n"
 }
 line_out() {
-  printf "%-7s\t%s\n" "$1" "$2"
+	printf "%-7s\t%s\n" "$1" "$2"
 }
 no_install() {
-  line "$1 will not be installed."
+	line "$1 will not be installed."
 }
 num_box() {
-  echo $_DIVIDER
-  printf "%-20s$2\n" $1
-  echo $_DIVIDER
+	echo $_DIVIDER
+	printf "%-20s$2\n" $1
+	echo $_DIVIDER
 }
 
 alias box="num_box ''"
@@ -40,13 +40,19 @@ prompt_execute() {
 	while $loop; do
 		printf -v prompt_text "%-7s\t%s%s%s: " "[*]" "Would you like to install " $program "? (Y/N)"
 		read -t $TIMEOUT -n 1 -p "$prompt_text" answer
-		[ -z "$answer" ] && answer='y'  # Default to 'Yes' on timeout
-		echo "" # Newline after input
+		[ -z "$answer" ] && answer='y' # Default to 'Yes' on timeout
+		echo ""                        # Newline after input
 
-		case $answer in 
-			[yY]* ) loop=false; run_install;;
-			[nN]* ) loop=false; no_install $program;;
-			* ) line "Please answer Yes (y) or No (n).";;
+		case $answer in
+		[yY]*)
+			loop=false
+			run_install
+			;;
+		[nN]*)
+			loop=false
+			no_install $program
+			;;
+		*) line "Please answer Yes (y) or No (n)." ;;
 		esac
 	done
 }
@@ -54,7 +60,6 @@ prompt_execute() {
 ############################
 # 			Prologue 					#
 ############################
-
 box "Installer: jsteinberg4/dotfiles"
 
 line "This script installs and configures the jsteinberg4/dotfiles repository."
@@ -71,10 +76,15 @@ export SCRIPT_DIR="$REPO_DIR/setup_scripts"
 line "Repo location? TODO"
 pause
 git clone \
-  --recursive \
-  --depth 1 \
-  "git@github.com:jsteinberg4/dotfiles.git" \
-  "$REPO_DIR"
+	--recursive \
+	--depth 1 \
+	"git@github.com:jsteinberg4/dotfiles.git" \
+	"$REPO_DIR"
+
+############################
+#  Link any hooks
+############################
+source "./refresh-hooks.sh"
 
 ############################
 # 	 Locate scripts
@@ -95,15 +105,15 @@ cd ..
 ###############################
 # Run scripts in alphabetical order
 ################################
-if (( $NUM_SCRIPTS == 0 )); then
+if (($NUM_SCRIPTS == 0)); then
 	line "No scripts found"
 	line "Exiting..."
 	free
 	exit 1
 else
 	line "Executing setup scripts..."
-	for (( x=0; x < $NUM_SCRIPTS; x++ )); do
-		num_box "[$((x+1))/$NUM_SCRIPTS]" "${SCRIPTS[$x]}"
+	for ((x = 0; x < $NUM_SCRIPTS; x++)); do
+		num_box "[$((x + 1))/$NUM_SCRIPTS]" "${SCRIPTS[$x]}"
 		source "$SCRIPT_DIR/${SCRIPTS[$x]}"
 		prompt_execute $NAME
 		clear_installers
