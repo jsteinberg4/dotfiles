@@ -26,3 +26,10 @@ autocmd("BufWinLeave", {
   pattern = "*.py",
   command = "lua vim.diagnostic.config({virtual_text = true})",
 })
+
+-- NOTE: Neovim is marking *.h files as CPP, but they are C
+augroup("FixHeaderFiletype", {})
+autocmd("BufWinEnter", {
+  pattern = "*.h",
+  command = "silent! set filetype=c",
+})
