@@ -10,10 +10,12 @@ augroup("RememberFolds", {})
 autocmd("BufWinEnter", {
   pattern = "*",
   command = "silent! loadview",
+  group = "RememberFolds",
 })
 autocmd("BufWinLeave", {
   pattern = "*",
   command = "silent! mkview",
+  group = "RememberFolds",
 })
 
 -- WARN: Disable virtual text in python files
@@ -21,8 +23,10 @@ augroup("DisablePyDiagnostics", {})
 autocmd("BufWinEnter", {
   pattern = "*.py",
   command = "lua vim.diagnostic.config({virtual_text = false})",
+  group = "DisablePyDiagnostics",
 })
 autocmd("BufWinLeave", {
   pattern = "*.py",
   command = "lua vim.diagnostic.config({virtual_text = true})",
+  group = "DisablePyDiagnostics",
 })

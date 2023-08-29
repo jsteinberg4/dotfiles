@@ -51,12 +51,10 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         -- Linters
-        -- "pylint",
         "jsonlint",
         "markdownlint",
         "write-good",
         -- Formatters
-        "autoflake",
         "black",
         "stylua",
         "usort",
@@ -65,6 +63,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = { "nvim-treesitter/nvim-treesitter-context" },
     opts = function(_, opts)
       -- treesitter parsers
       vim.list_extend(opts.ensure_installed, {
@@ -111,7 +110,6 @@ return {
             },
           },
         },
-        yamlls = {},
       },
     },
   },
@@ -121,13 +119,11 @@ return {
       local nls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources, {
         -- Completion
-        -- nls.builtins.completion.spell,
         -- Code Action
         nls.builtins.code_actions.gitsigns,
         -- Diagnostics
         nls.builtins.diagnostics.jsonlint,
         nls.builtins.diagnostics.markdownlint,
-        -- nls.builtins.diagnostics.ruff,
         nls.builtins.diagnostics.pylint.with({
           extra_args = {
             "--generated-members=numpy.*, torch.*",

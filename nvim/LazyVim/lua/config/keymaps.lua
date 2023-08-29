@@ -29,3 +29,6 @@ map("n", "N", "Nztzv", { desc = "Center cursor while searching" })
 -- Moving lines
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected line down", silent = true })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected line up", silent = true })
+
+-- File explorer
+map("n", "<leader>pv", "<CMD>Lexplore<CR>", { desc = "[p]roject [v]iew", silent = true })
