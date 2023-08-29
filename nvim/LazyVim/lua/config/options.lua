@@ -10,6 +10,8 @@ local global = vim.g
 -- Recommended markdown setting from LazyVim
 global.markdown_recommended_style = 0
 global.python3_host_prog = os.getenv("HOME") .. "/environments/neovim-provider/bin/python3"
+global.loaded_perl_provider = 0
+global.loaded_ruby_provider = 0
 
 -- NetRW Conf
 global.netrw_keepdir = 0 -- Keep current & browsing dir synced
