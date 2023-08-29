@@ -6,6 +6,7 @@ local to_disable = {
   -- "ggandor/flit.nvim",
   "goolord/alpha-nvim",
   "nvim-neo-tree/neo-tree.nvim",
+  "rcarriga/nvim-notify",
 }
 --
 -- Disable every plugin in the `to_disable` list
