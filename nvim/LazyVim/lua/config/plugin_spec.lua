@@ -22,7 +22,7 @@ function M.get_branch()
   local branch = stdout:read("*a")
   stdout:close()
 
-  return branch
+  return vim.trim(branch)
 end
 
 function M.setup()
@@ -36,7 +36,7 @@ function M.setup()
     end
   end
 
-  -- Include custom configs
+  -- Include custom configs. Only add work-specific if on the work branch
   vim.list_extend(plugs, { { import = "plugins.common" } })
   if branch == "work" then
     vim.list_extend(plugs, { { import = "plugins.work" } })
