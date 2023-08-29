@@ -6,33 +6,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-local optional_langs = {
-  { "go", { import = "lazyvim.plugins.extras.lang.go" } },
-  { "node", { import = "lazyvim.plugins.extras.lang.typescript" } },
-  { "node", { import = "lazyvim.plugins.extras.formatting.prettier" } },
-}
-local lazy_spec = {
-  -- add LazyVim and import its plugins
-  { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-  { import = "lazyvim.plugins.extras.lang.json" },
-  { import = "lazyvim.plugins.extras.lang.clangd" },
-  { import = "lazyvim.plugins.extras.lang.python" },
-  { import = "lazyvim.plugins.extras.test.core" },
-  { import = "lazyvim.plugins.extras.dap.core" },
-  { import = "lazyvim.plugins.extras.util.project" },
-}
+local spec = require("config.plugin_spec")
 
--- Configure extra languages
-for _, opts in pairs(optional_langs) do
-  if vim.fn.executable(opts[1]) then
-    vim.list_extend(lazy_spec, { opts[2] })
-  end
-end
-
--- WARN: Must be the last thing before lazy_spec is used
-vim.list_extend(lazy_spec, { { import = "plugins" } })
+print(vim.inspect(spec))
 require("lazy").setup({
-  spec = lazy_spec,
+  spec = spec,
   defaults = {
     lazy = true,
     -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
