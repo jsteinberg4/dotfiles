@@ -15,7 +15,8 @@ global.python3_host_prog = os.getenv("HOME") .. "/environments/neovim-provider/b
 global.netrw_keepdir = 0 -- Keep current & browsing dir synced
 global.netrw_browse_split = 0
 global.netrw_banner = 0
-global.netrw_winsize = 25
+global.netrw_winsize = 30
+global.netrw_localcopydircmd = "cp -r"
 
 ----------------------------------------------
 ----------------options-----------------------

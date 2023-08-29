@@ -8,7 +8,6 @@ exec 1>&2
 #
 # Blacklist the lazy-lock.json file off main
 #
-# if [ "$(git diff --exit-code -- $blacklistFile)" == "1" ]; then
 branch="$(git rev-parse --abbrev-ref HEAD)"
 blacklistFile="nvim/LazyVim/lazy-lock.json"
 
