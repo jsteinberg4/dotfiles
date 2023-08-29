@@ -1,3 +1,7 @@
+-- Configures the plugin table for "spec" in lazy.setup()
+-- > Toggles language-specific plugins based on what's installed
+-- > Toggles some configurations based on the dotfiles branch
+
 local M = {}
 
 M.base_spec = {
@@ -16,11 +20,19 @@ M.optional_langs = {
   { "node", { import = "lazyvim.plugins.extras.formatting.prettier" } },
 }
 
+-- Check name of the current branch
 ---@return string
 function M.get_branch()
   local stdout = io.popen("git rev-parse --abbrev-ref HEAD")
-  local branch = stdout:read("*a")
-  stdout:close()
+  local branch = ""
+
+  -- Default to main if stdout errored
+  if stdout == nil then
+    branch = "main"
+  else
+    branch = stdout:read("*a")
+    stdout:close()
+  end
 
   return vim.trim(branch)
 end

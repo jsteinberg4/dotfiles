@@ -6,11 +6,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-local spec = require("config.plugin_spec")
-
-print(vim.inspect(spec))
 require("lazy").setup({
-  spec = spec,
+  spec = require("config.plugin_spec"),
   defaults = {
     lazy = true,
     -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
