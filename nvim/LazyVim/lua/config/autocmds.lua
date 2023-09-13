@@ -23,7 +23,7 @@ augroup("DisableVirtText", {})
 autocmd("BufWinEnter", {
   pattern = { "*.py", "*.c", "*.h" },
   command = "lua vim.diagnostic.config({virtual_text = false})",
-  group = "DisablePyDiagnostics",
+  group = "DisableVirtText",
 })
 autocmd("BufWinLeave", {
   pattern = { "*.py", "*.c", "*.h" },
