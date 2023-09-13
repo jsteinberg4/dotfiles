@@ -28,5 +28,5 @@ autocmd("BufWinEnter", {
 autocmd("BufWinLeave", {
   pattern = { "*.py", "*.c", "*.h" },
   command = "lua vim.diagnostic.config({virtual_text = true})",
-  group = "DisablePyDiagnostics",
+  group = "DisableVirtText",
 })
