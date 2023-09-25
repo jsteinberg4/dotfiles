@@ -1,0 +1,47 @@
+return {}
+-- return {
+--   { -- Treesitter support
+--     "nvim-treesitter/nvim-treesitter",
+--     opts = function(_, opts)
+--       if type(opts.ensure_installed) == "table" then
+--         vim.list_extend(opts.ensure_installed, { "c", "cpp", "make", "cmake" })
+--       end
+--     end,
+--   },
+--   {
+--     "p00f/clangd_extensions.nvim",
+--     lazy = true,
+--     config = function() end,
+--     opts = {
+--       inlay_hints = { inline = false },
+--       ast = {
+--         role_icons = {
+--           type = "",
+--           declaration = "",
+--           expression = "",
+--           specifier = "",
+--           statement = "",
+--           ["template argument"] = "",
+--         },
+--         kind_icons = {
+--           Compound = "",
+--           Recovery = "",
+--           TranslationUnit = "",
+--           PackExpansion = "",
+--           TemplateTypeParm = "",
+--           TemplateTemplateParm = "",
+--           TemplateParamObject = "",
+--         },
+--         highlights = {
+--           detail = "Comment",
+--         },
+--       },
+--       memory_usage = {
+--         border = "none",
+--       },
+--       symbol_info = {
+--         border = "none",
+--       },
+--     },
+--   },
+-- }
