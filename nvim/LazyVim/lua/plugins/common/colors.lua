@@ -32,7 +32,9 @@ M.setup = function()
     if color == M.default.plug_path then
       color_opts.event = "VeryLazy"
     else
-      color_opts.keys = { "<leader>uC", "<NOP>", desc = "NOP to load colors" }
+      -- FIXME: make lazier-loading colors work...somehow
+      -- color_opts.keys = { "<leader>uC", "<NOP>", desc = "NOP to load colors" }
+      color_opts.event = "VeryLazy"
     end
 
     vim.list_extend(plugs, { color_opts })
