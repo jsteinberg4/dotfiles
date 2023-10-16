@@ -6,7 +6,7 @@ return {
       return {}
     end,
   },
-  { -- NOTE: Hole section taken directly from https://www.lazyvim.org/configuration/recipes#supertab
+  { -- NOTE: Whole section taken directly from https://www.lazyvim.org/configuration/recipes#supertab
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
