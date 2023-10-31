@@ -9,7 +9,7 @@ exec 1>&2
 # Blacklist the lazy-lock.json file off main
 #
 branch="$(git rev-parse --abbrev-ref HEAD)"
-blacklistFile="nvim/LazyVim/lazy-lock.json"
+blacklistFile="nvim/lazy-lock.json"
 
 if [ "$branch" != "main" ]; then
 	if git diff --cached --name-only HEAD |
