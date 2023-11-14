@@ -21,14 +21,29 @@ num_box() {
 	echo $_DIVIDER
 }
 
-alias box="num_box ''"
-alias debug="line_out '[DEBUG]'"
-alias fixme="line_out '[FIXME]'"
-alias line="line_out \"[*]\""
-alias note="line_out '[NOTE]'"
-alias warn="line_out '[WARN]'"
+# common uses of utility functions
+box() {
+	num_box ''
+}
+debug() {
+	line_out '[DEBUG]'
+}
+fixme() {
+	line_out '[FIXME]'
+}
+line() {
+	line_out \"[*]\"
+}
+note() {
+	line_out '[NOTE]'
+}
+warn(){ 
+	line_out '[WARN]'
+}
 
-alias pause="read -n 1 -s -r -p $'\nPress any key to continue...\n' key"
+pause() {
+	read -n 1 -s -r -p $'\nPress any key to continue...\n' key
+}
 
 export -f div
 export TIMEOUT=30
@@ -72,14 +87,19 @@ pause
 ############################
 export REPO_DIR="$HOME/dotfiles"
 export SCRIPT_DIR="$REPO_DIR/setup_scripts"
-# TODO: -- Input download dir
-line "Repo location? TODO"
-pause
-git clone \
-	--recursive \
-	--depth 1 \
-	"git@github.com:jsteinberg4/dotfiles.git" \
-	"$REPO_DIR"
+
+if [ -d "$REPO_DIR" ]; then
+  line "git@github.com:jsteinberg4/dotfiles.git already installed. Continuing..."
+else
+	# TODO: -- Input download dir
+	line "Repo location? TODO"
+	pause
+	git clone \
+		--recursive \
+		--depth 1 \
+		"git@github.com:jsteinberg4/dotfiles.git" \
+		"$REPO_DIR"
+fi
 
 ############################
 #  Link any hooks
