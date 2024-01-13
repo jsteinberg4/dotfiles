@@ -19,14 +19,14 @@ autocmd("BufWinLeave", {
 })
 
 -- WARN: Disable virtual text in python files
-augroup("DisableVirtText", {})
-autocmd("BufWinEnter", {
-  pattern = { "*.py", "*.c", "*.h" },
-  command = "lua vim.diagnostic.config({virtual_text = false})",
-  group = "DisableVirtText",
-})
-autocmd("BufWinLeave", {
-  pattern = { "*.py", "*.c", "*.h" },
-  command = "lua vim.diagnostic.config({virtual_text = true})",
-  group = "DisableVirtText",
-})
+-- augroup("DisableVirtText", {})
+-- autocmd("BufWinEnter", {
+--   pattern = { "*.py", "*.c", "*.h" },
+--   command = "lua vim.diagnostic.config({virtual_text = false})",
+--   group = "DisableVirtText",
+-- })
+-- autocmd("BufWinLeave", {
+--   pattern = { "*.py", "*.c", "*.h" },
+--   command = "lua vim.diagnostic.config({virtual_text = true})",
+--   group = "DisableVirtText",
+-- })

@@ -37,7 +37,7 @@ line() {
 note() {
 	line_out '[NOTE]'
 }
-warn(){ 
+warn() {
 	line_out '[WARN]'
 }
 
@@ -89,7 +89,7 @@ export REPO_DIR="$HOME/dotfiles"
 export SCRIPT_DIR="$REPO_DIR/setup_scripts"
 
 if [ -d "$REPO_DIR" ]; then
-  line "git@github.com:jsteinberg4/dotfiles.git already installed. Continuing..."
+	line "git@github.com:jsteinberg4/dotfiles.git already installed. Continuing..."
 else
 	# TODO: -- Input download dir
 	line "Repo location? TODO"

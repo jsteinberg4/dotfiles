@@ -90,6 +90,7 @@ return {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
+      diagnostics = { virtual_text = false },
       ---@type lspconfig.options
       servers = {
         bashls = {},
@@ -113,32 +114,32 @@ return {
       },
     },
   },
-  {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      opts.sources = vim.list_extend(opts.sources, {
-        -- Completion
-        -- Code Action
-        nls.builtins.code_actions.gitsigns,
-        -- Diagnostics
-        nls.builtins.diagnostics.jsonlint,
-        nls.builtins.diagnostics.markdownlint,
-        nls.builtins.diagnostics.pylint.with({
-          extra_args = {
-            "--generated-members=numpy.*, torch.*",
-            "--disable=missing-class-docstring,missing-function-docstring,line-too-long,logging-fstring-interpolation,wrong-import-order,pointless-string-statement,broad-except",
-            "--extension-pkg-whitelist=pydantic",
-          },
-        }),
-        -- Formatters
-        nls.builtins.formatting.autoflake,
-        nls.builtins.formatting.black,
-        nls.builtins.formatting.stylua,
-        -- Hover
-        nls.builtins.hover.dictionary, -- Definitions
-        nls.builtins.hover.printenv, -- Show env values
-      })
-    end,
-  },
+  -- {
+  --   "nvimtools/none-ls.nvim",
+  --   opts = function(_, opts)
+  --     local nls = require("null-ls")
+  --     opts.sources = vim.list_extend(opts.sources, {
+  --       -- Completion
+  --       -- Code Action
+  --       nls.builtins.code_actions.gitsigns,
+  --       -- Diagnostics
+  --       nls.builtins.diagnostics.jsonlint,
+  --       nls.builtins.diagnostics.markdownlint,
+  --       nls.builtins.diagnostics.pylint.with({
+  --         extra_args = {
+  --           "--generated-members=numpy.*, torch.*",
+  --           "--disable=missing-class-docstring,missing-function-docstring,line-too-long,logging-fstring-interpolation,wrong-import-order,pointless-string-statement,broad-except",
+  --           "--extension-pkg-whitelist=pydantic",
+  --         },
+  --       }),
+  --       -- Formatters
+  --       nls.builtins.formatting.autoflake,
+  --       nls.builtins.formatting.black,
+  --       nls.builtins.formatting.stylua,
+  --       -- Hover
+  --       nls.builtins.hover.dictionary, -- Definitions
+  --       nls.builtins.hover.printenv, -- Show env values
+  --     })
+  --   end,
+  -- },
 }
