@@ -11,7 +11,7 @@ local M = {}
 
 M.default = {
   plug_path = "nyoom-engineering/oxocarbon.nvim",
-  colorscheme = "tokyonight-night",
+  colorscheme = "catppuccin",
 }
 
 M.colors = {
