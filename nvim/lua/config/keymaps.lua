@@ -32,3 +32,6 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected line up", silent = tru
 
 -- File explorer
 map("n", "<leader>pv", "<CMD>Explore %:p:h<CR>", { desc = "[p]roject [v]iew", silent = true })
+
+-- Stop accidental F1 presses from triggering the help text >:(
+map("n", "<F1>", "<NOP>", { desc = "Disable F1" })
