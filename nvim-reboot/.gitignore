@@ -6,3 +6,6 @@ debug
 foo.*
 *.log
 data
+
+# Can hold DB connection secrets
+.lazy.lua
