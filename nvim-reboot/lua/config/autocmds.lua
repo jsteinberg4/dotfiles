@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("BufWinLeave", {
 vim.api.nvim_create_augroup("Frankenstein", {})
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "/Users/jesse/Repos/frankenstein/**/*.py",
-  desc = "Disable black formatter in Frankenstein",
+  desc = "Load editorconfig for Frankenstein",
   group = "Frankenstein",
   callback = function(event)
     if not vim.b.editorconfig then
@@ -35,13 +35,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 
     -- Disable black autoformatting
     if LazyVim.format.enabled(event.buf) then
-      LazyVim.format.toggle(event.buf)
+      vim.b.autformat = false
       vim.notify("Disabled autoformatting for this buffer.", vim.log.levels.INFO)
     end
-    -- local leader = vim.g.mapleader or "\\"
-    -- local keys = vim.api.nvim_replace_termcodes(leader .. "uF", true, false, true)
-    -- -- DEBUG: print the keys
-    -- vim.api.nvim_feedkeys(keys, "n", false)
   end,
 })
 
