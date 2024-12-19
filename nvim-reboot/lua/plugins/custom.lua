@@ -44,7 +44,10 @@ return {
           {
             pane = 1,
             section = "terminal",
-            cmd = "chafa ~/Pictures/Doris_Face_Pink.png --format symbols --symbols vhalf --size 60x17  --stretch; sleep .1",
+            cmd = "chafa "
+              .. vim.fn.stdpath("data")
+              .. "/dashboard.png"
+              .. " --format symbols --symbols vhalf --size 60x17  --stretch; sleep .1",
             height = 17,
             padding = 1,
           },
