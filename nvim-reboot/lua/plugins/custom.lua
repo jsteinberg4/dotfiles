@@ -25,7 +25,8 @@ return {
   { -- Default colorscheme
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "duskfox",
+      -- colorscheme = "duskfox",
+      colorscheme = "nordfox",
     },
   },
   {
