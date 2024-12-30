@@ -1,0 +1,14 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+
+# Can hold DB connection secrets
+.lazy.lua
+
+# WARN: Not sure if this will break things. Goal is to let 'lazyextras' differ per installation
+lazyvim.json
