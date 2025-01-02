@@ -1,5 +1,7 @@
 # Equivalent to a bashrc file
 # file:///opt/homebrew/Cellar/fish/3.7.1/share/doc/fish/language.html#configuration-files
+
+# Helpful for homebrew setup: https://gist.github.com/gagarine/cf3f65f9be6aa0e105b184376f765262
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
