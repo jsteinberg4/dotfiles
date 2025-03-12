@@ -31,6 +31,7 @@
 
   tasks:
     - name: Install packages
+      tags: packages
       block:
         - name: Homebrew taps
           when: ansible_distribution == "MacOSX"
@@ -76,13 +77,13 @@
         #         update_cache: true
         #         name: gh
         #         state: present
-    - name: Guarantee config directory
+    - name: Guarantee config directory present
       ansible.builtin.file:
         path: "{{ ansible_user_dir }}/.config"
         state: directory
         mode: "0755"
-
-    - name: Setup fish
+    - name: Setup fish # TODO: fish plugins?
+      tags: shell
       become: true
       block:
         - name: Locate fish binary
@@ -105,14 +106,13 @@
             state: link
           notify:
             - Restart shell
-
-    - name: Link nvim config
+    - name: Nvim config
+      tags: nvim
       ansible.builtin.file:
         src: "{{ files.dotfiles }}/nvim"
         dest: "{{ ansible_user_dir }}/.config/nvim"
         state: link
-
-    - name: Setup git
+    - name: Setup git & git tools # TODO: Auto populate the correct git email?
       tags: git
       block:
         - name: Create ~/.gitconfig
@@ -125,11 +125,6 @@
             url: https://raw.githubusercontent.com/dandavison/delta/refs/heads/main/themes.gitconfig
             mode: "0644"
             dest: "{{ ansible_user_dir }}/{{ files.delta_themes }}"
-        - name: Include delta themes
-          community.general.git_config:
-            name: include.path
-            value: "{{ ansible_user_dir }}/{{ files.delta_themes }}"
-            state: present
         - name: Lazygit config (macOS)
           when: ansible_distribution == "MacOSX"
           ansible.builtin.file:
@@ -142,7 +137,12 @@
             src: "{{ files.dotfiles }}/{{ files.lazygit_config.src }}"
             dest: "{{ ansible_user_dir }}/{{ files.lazygit_config.linux }}"
             state: link
-
+        - name: Include delta themes
+          community.general.git_config:
+            name: include.path
+            value: "{{ ansible_user_dir }}/{{ files.delta_themes }}"
+            scope: global
+            state: present
     - name: Install uv
       tags: uv
       block:
@@ -151,16 +151,18 @@
           register: uv_check
           ignore_errors: true # Avoid fail if uv is missing
           changed_when: false
-
         - name: Download uv
           when: uv_check.rc != 0
           ansible.builtin.get_url:
             url: https://astral.sh/uv/install.sh
-            tmp_dest: /tmp/astral.sh
+            dest: /tmp/astral.sh
             mode: "u+x"
-            # - name: Run installer
-            #   when:
-
+        - name: Run installer
+          changed_when: "uv_check.rc == 0"
+          when:
+            - ansible_distribution == "MacOSX"
+            - uv_check.rc != 0
+          ansible.builtin.command: /bin/sh /tmp/astral.sh
   handlers:
     - name: Restart shell
       ansible.builtin.command: exec fish
