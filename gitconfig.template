@@ -1,0 +1,32 @@
+[init]
+	defaultBranch = main
+[user]
+  email = jessesteinberg01@gmail.com
+  name = Jesse Steinberg
+[core]
+  splitIndex = true
+  untrackedCache = true
+  editor = nvim
+  pager = delta | less
+[push]
+  # autoSetupRemote and default will auto create the upstream branch
+  # "origin/my-branch" when you first push to a branch
+	autoSetupRemote = true
+	default = simple
+[pull]
+  ff = only
+  rebase = true
+[interactive]
+  diffFilter = delta --color-only
+[merge]
+  conflictstyle = diff3 # from delta
+[diff]
+  colorMoved = default # delta
+[delta]
+  navigate = true
+  features = colibri
+  ; features = mellow-barbet
+  ; features = arctic-fox
+  paging = never
+  side-by-side = false
+  hyperlinks = true

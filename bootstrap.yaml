@@ -1,0 +1,167 @@
+# Docs that guided this setup:
+# https://phelipetls.github.io/posts/introduction-to-ansible/
+- name: Bootstrap dev setup
+  hosts: localhost
+  vars:
+    packages:
+      - git
+      - tmux
+      - ripgrep
+      - neovim
+      - fish
+      - jq
+    deb_pkgs:
+      - python3-neovim
+      - fd-find
+    brew_pkgs:
+      - jesseduffield/lazygit/lazygit
+      - ghostty
+      - font-jetbrains-mono-nerd-font
+      - fd
+      - gh
+      - git-delta
+    files:
+      gitconfig_templ: gitconfig.template
+      delta_themes: delta-themes.gitconfig
+      dotfiles: "{{ ansible_user_dir }}/dotfiles"
+      lazygit_config:
+        src: lazygit_config.yml
+        macos: "Library/Application\ Support/lazygit/config.yml"
+        linux: .config/lazygit/config.yml
+
+  tasks:
+    - name: Install packages
+      block:
+        - name: Homebrew taps
+          when: ansible_distribution == "MacOSX"
+          community.general.homebrew_tap:
+            name:
+              - jesseduffield/lazygit
+        - name: Install packages with Homebrew
+          community.general.homebrew:
+            name: "{{ packages + brew_pkgs }}"
+            state: present
+          when: ansible_distribution == "MacOSX"
+        - name: Install packages with apt
+          when: ansible_os_family == "Debian"
+          ansible.builtin.apt:
+            name: "{{ packages + deb_pkgs }}"
+            state: present
+        # - name: Install GitHub CLI (Debian-based)
+        #   when: ansible_os_family == "Debian"
+        #   become: true
+        #   block:
+        #     # *Probably* works? ChatGPT helped convert the official Debian instructions
+        #     # https://github.com/cli/cli/blob/af4acb380136fd106b38cc0ab404ff975bca9795/docs/install_linux.md
+        #     - name: Ensure keyring dir
+        #       ansible.builtin.file:
+        #         path: "/etc/apt/keyrings"
+        #         state: directory
+        #         mode: "0755"
+        #     - name: Download GitHub CLI keyring
+        #       ansible.builtin.get_url:
+        #         url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+        #         dest: "/etc/apt/keyrings/githubcli-archive-keyring.gpg"
+        #         mode: "go+r"
+        #         owner: root
+        #         group: root
+        #     - name: Add GitHub CLI APT repository
+        #       ansible.builtin.apt_repository:
+        #         repo: |
+        #           "deb [arch={{ ansible_facts.architecture }} signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+        #         filename: github-cli
+        #         state: present
+        #     - name: Install CLI from apt
+        #       ansible.builtin.apt:
+        #         update_cache: true
+        #         name: gh
+        #         state: present
+    - name: Guarantee config directory
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/.config"
+        state: directory
+        mode: "0755"
+
+    - name: Setup fish
+      become: true
+      block:
+        - name: Locate fish binary
+          ansible.builtin.command: which fish
+          register: fish_path
+          changed_when: false # Tell ansible this does not mutate system
+        - name: Add fish to /etc/shells
+          ansible.builtin.lineinfile:
+            path: /etc/shells
+            line: "{{ fish_path.stdout }}"
+            state: present
+        - name: Set fish as default
+          ansible.builtin.user:
+            name: "{{ ansible_user_id }}"
+            shell: "{{ fish_path.stdout }}"
+        - name: Link fish config
+          ansible.builtin.file:
+            src: "{{ files.dotfiles }}/fish"
+            dest: "{{ ansible_user_dir }}/.config/fish"
+            state: link
+          notify:
+            - Restart shell
+
+    - name: Link nvim config
+      ansible.builtin.file:
+        src: "{{ files.dotfiles }}/nvim"
+        dest: "{{ ansible_user_dir }}/.config/nvim"
+        state: link
+
+    - name: Setup git
+      tags: git
+      block:
+        - name: Create ~/.gitconfig
+          ansible.builtin.copy:
+            src: "{{ files.dotfiles }}/{{ files.gitconfig_templ }}"
+            dest: "{{ ansible_user_dir }}/.gitconfig"
+            mode: "0644"
+        - name: Download delta themes
+          ansible.builtin.get_url:
+            url: https://raw.githubusercontent.com/dandavison/delta/refs/heads/main/themes.gitconfig
+            mode: "0644"
+            dest: "{{ ansible_user_dir }}/{{ files.delta_themes }}"
+        - name: Include delta themes
+          community.general.git_config:
+            name: include.path
+            value: "{{ ansible_user_dir }}/{{ files.delta_themes }}"
+            state: present
+        - name: Lazygit config (macOS)
+          when: ansible_distribution == "MacOSX"
+          ansible.builtin.file:
+            src: "{{ files.dotfiles }}/{{ files.lazygit_config.src }}"
+            dest: "{{ ansible_user_dir }}/{{ files.lazygit_config.macos }}"
+            state: link
+        - name: Lazygit config (Linux)
+          when: ansible_os_family == "Debian"
+          ansible.builtin.file:
+            src: "{{ files.dotfiles }}/{{ files.lazygit_config.src }}"
+            dest: "{{ ansible_user_dir }}/{{ files.lazygit_config.linux }}"
+            state: link
+
+    - name: Install uv
+      tags: uv
+      block:
+        - name: Detect uv
+          ansible.builtin.command: command -v uv
+          register: uv_check
+          ignore_errors: true # Avoid fail if uv is missing
+          changed_when: false
+
+        - name: Download uv
+          when: uv_check.rc != 0
+          ansible.builtin.get_url:
+            url: https://astral.sh/uv/install.sh
+            tmp_dest: /tmp/astral.sh
+            mode: "u+x"
+            # - name: Run installer
+            #   when:
+
+  handlers:
+    - name: Restart shell
+      ansible.builtin.command: exec fish
+      changed_when: false
