@@ -1,2 +1,0 @@
-TODO:
--> Use gnu stow
