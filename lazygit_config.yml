@@ -1,5 +1,15 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+promptToReturnFromSubprocess: false
 git:
   paging:
     colorArg: always
     useConfig: true
+gui:
+  skipDiscardChangeWarning: true
+  showNumstatInFilesView: true
+  showRandomTip: true
+  showBottomLine: true
+  nerdFontsVersion: "3"
+  showFileIcons: true
+  showDivergenceFromBaseBranch: arrowAndNumber
+  filterMode: fuzzy

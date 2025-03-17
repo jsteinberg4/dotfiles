@@ -16,4 +16,11 @@ if status is-interactive
     if type -q lazygit
         abbr --add lg lazygit
     end
+    # Use uv instead of raw pip
+    if type -q uv
+        abbr --add pip uv pip
+    end
+
+    # Vim keybind
+    fish_vi_key_bindings
 end
