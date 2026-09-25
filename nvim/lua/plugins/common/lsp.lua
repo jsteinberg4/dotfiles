@@ -47,7 +47,7 @@ return {
     end,
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         -- Linters
@@ -55,7 +55,8 @@ return {
         "markdownlint",
         "write-good",
         -- Formatters
-        "black",
+        -- "black",
+        "ruff",
         "stylua",
         "usort",
       })
