@@ -1,9 +1,10 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
 promptToReturnFromSubprocess: false
 git:
-  paging:
-    colorArg: always
-    useConfig: true
+  diffRenderers:
+    - colorArg: always
+      useConfig: true
+      type: rawGit
 gui:
   skipDiscardChangeWarning: true
   showNumstatInFilesView: true
