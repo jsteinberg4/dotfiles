@@ -15,11 +15,12 @@
       - fd-find
     brew_pkgs:
       - jesseduffield/lazygit/lazygit
-      - ghostty
+      # - ghostty # FIXME: Fails with "ghostty already installed" error
       - font-jetbrains-mono-nerd-font
       - fd
       - gh
       - git-delta
+      - node
     files:
       gitconfig_templ: gitconfig.template
       delta_themes: delta-themes.gitconfig
@@ -38,45 +39,16 @@
           community.general.homebrew_tap:
             name:
               - jesseduffield/lazygit
-        - name: Install packages with Homebrew
-          community.general.homebrew:
-            name: "{{ packages + brew_pkgs }}"
-            state: present
-          when: ansible_distribution == "MacOSX"
+        # - name: Install packages with Homebrew
+        #   when: ansible_distribution == "MacOSX"
+        #   community.general.homebrew:
+        #     name: "{{ packages + brew_pkgs }}"
+        #     state: present
         - name: Install packages with apt
           when: ansible_os_family == "Debian"
           ansible.builtin.apt:
             name: "{{ packages + deb_pkgs }}"
             state: present
-        # - name: Install GitHub CLI (Debian-based)
-        #   when: ansible_os_family == "Debian"
-        #   become: true
-        #   block:
-        #     # *Probably* works? ChatGPT helped convert the official Debian instructions
-        #     # https://github.com/cli/cli/blob/af4acb380136fd106b38cc0ab404ff975bca9795/docs/install_linux.md
-        #     - name: Ensure keyring dir
-        #       ansible.builtin.file:
-        #         path: "/etc/apt/keyrings"
-        #         state: directory
-        #         mode: "0755"
-        #     - name: Download GitHub CLI keyring
-        #       ansible.builtin.get_url:
-        #         url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
-        #         dest: "/etc/apt/keyrings/githubcli-archive-keyring.gpg"
-        #         mode: "go+r"
-        #         owner: root
-        #         group: root
-        #     - name: Add GitHub CLI APT repository
-        #       ansible.builtin.apt_repository:
-        #         repo: |
-        #           "deb [arch={{ ansible_facts.architecture }} signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
-        #         filename: github-cli
-        #         state: present
-        #     - name: Install CLI from apt
-        #       ansible.builtin.apt:
-        #         update_cache: true
-        #         name: gh
-        #         state: present
     - name: Guarantee config directory present
       ansible.builtin.file:
         path: "{{ ansible_user_dir }}/.config"
@@ -125,6 +97,11 @@
             url: https://raw.githubusercontent.com/dandavison/delta/refs/heads/main/themes.gitconfig
             mode: "0644"
             dest: "{{ ansible_user_dir }}/{{ files.delta_themes }}"
+        - name: Create gitconfig dir (macOS)
+          ansible.builtin.file:
+            path: "{{ files.lazygit_config.macos }}"
+            state: directory
+            mode: "0755"
         - name: Lazygit config (macOS)
           when: ansible_distribution == "MacOSX"
           ansible.builtin.file:
@@ -167,3 +144,35 @@
     - name: Restart shell
       ansible.builtin.command: exec fish
       changed_when: false
+
+
+
+# - name: Install GitHub CLI (Debian-based)
+#   when: ansible_os_family == "Debian"
+#   become: true
+#   block:
+#     # *Probably* works? ChatGPT helped convert the official Debian instructions
+#     # https://github.com/cli/cli/blob/af4acb380136fd106b38cc0ab404ff975bca9795/docs/install_linux.md
+#     - name: Ensure keyring dir
+#       ansible.builtin.file:
+#         path: "/etc/apt/keyrings"
+#         state: directory
+#         mode: "0755"
+#     - name: Download GitHub CLI keyring
+#       ansible.builtin.get_url:
+#         url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+#         dest: "/etc/apt/keyrings/githubcli-archive-keyring.gpg"
+#         mode: "go+r"
+#         owner: root
+#         group: root
+#     - name: Add GitHub CLI APT repository
+#       ansible.builtin.apt_repository:
+#         repo: |
+#           "deb [arch={{ ansible_facts.architecture }} signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+#         filename: github-cli
+#         state: present
+#     - name: Install CLI from apt
+#       ansible.builtin.apt:
+#         update_cache: true
+#         name: gh
+#         state: present
