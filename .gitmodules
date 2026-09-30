@@ -1,9 +1,0 @@
-[submodule "alacritty/alacritty-theme"]
-	path = alacritty/alacritty-theme
-	url = git@github.com:alacritty/alacritty-theme
-[submodule "NvChad"]
-	path = nvim/NvChad
-	url = git@github.com:jsteinberg4/NvChad.git
-[submodule "prezto"]
-	path = prezto
-	url = git@github.com:jsteinberg4/prezto.git
