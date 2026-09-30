@@ -13,6 +13,9 @@ if status is-interactive
     end
 
     # Example from file:///opt/homebrew/Cellar/fish/3.7.1/share/doc/fish/interactive.html#abbreviations
+    function multicd
+	    echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
+    end
     abbr --add dotdot --regex '^\.\.+$' --function multicd
 
     if type -q lazygit
