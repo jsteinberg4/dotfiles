@@ -1,0 +1,10 @@
+# fisher automatically overwrites everything in these folders
+functions/*
+conf.d/*
+completions/*
+fish_variables
+.fish_history
+
+# Still track custom files
+!functions/my_*.fish
+!conf.d/my_*.fish
